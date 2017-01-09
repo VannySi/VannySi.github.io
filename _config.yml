@@ -7,7 +7,7 @@
 
 # Site settings
 title: Vanny
-brief-intro: 
+brief-intro: "忽然想在这缤纷的世界留下点什么"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://vannysi.github.io/" # the base hostname & protocol for your site
 

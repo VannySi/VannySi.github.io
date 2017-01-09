@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: 关于
 permalink: /about/
 icon: heart
 type: page
@@ -26,11 +26,11 @@ type: page
 ## 联系我
 
 * GitHub：[Vanny](https://github.com/Vanny)
-* email：diff399202@sina.cn
+* Email：diff399202@sina.cn
 * [Weibo](http://weibo.com/u/2565903864)
 * [知乎](https://www.zhihu.com/people/si-yan-wan/)
 * [豆瓣](https://www.douban.com/people/139137046/)
 
-## Comments
+<!-- ## Comments -->
 
-{% include comments.html %}
+<!-- {% include comments.html %} -->
