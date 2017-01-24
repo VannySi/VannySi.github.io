@@ -35,6 +35,9 @@
                             color: #6b6a6a;
                         }
                     }
+                    .label-card:empty{
+                        display: none;
+                    }
                     .categories {
                         padding: 0;
                     }

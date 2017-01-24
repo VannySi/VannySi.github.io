@@ -2,6 +2,7 @@
 layout: post
 title:  "Hello Jekyll!"
 date:   2017-01-05 15:14:54
+author: Vanny
 categories: jekyll
 tags: jekyll
 excerpt: No matter how the world, I still believe that the good of humanity.
