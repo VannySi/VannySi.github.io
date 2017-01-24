@@ -152,7 +152,7 @@
                                 // color: #fff;
                                 // background-color: #bbb;
                                 // border-radius: 50%;
-                                // 
+                                //
                                 display: inline-block;
                                 min-width: 10px;
                                 padding: 3px 7px;
@@ -198,22 +198,28 @@
 }
 @media screen and (max-width: 770px) {
     .page[index] {
-        .left>ul li {
-            h2 {
-                font-size: 22px;
+        .left{
+            .pagination{
+                float: right;
+                margin: 0;
             }
-            .excerpt {
+            >ul li {
                 h2 {
-                    font-size: 20px;
+                    font-size: 22px;
                 }
-                h3 {
-                    font-size: 18px;
-                }
-                h4 {
-                    font-size: 16px;
-                }
-                li{
-                    margin: 0;
+                .excerpt {
+                    h2 {
+                        font-size: 20px;
+                    }
+                    h3 {
+                        font-size: 18px;
+                    }
+                    h4 {
+                        font-size: 16px;
+                    }
+                    li{
+                        margin: 0;
+                    }
                 }
             }
         }
