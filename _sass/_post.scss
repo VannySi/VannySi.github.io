@@ -82,11 +82,13 @@
     }
 }
 
-.post-recent{
-    .pre{
-        float: left;
-    }
-    .nex{
-        float: right;
+@media (min-width: 1024px) {
+    .post-recent{
+        .pre{
+            float: left;
+        }
+        .nex{
+            float: right;
+        }
     }
 }
