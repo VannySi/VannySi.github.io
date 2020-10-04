@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vannysi.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前端路由的实现原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端路由系统">
+<meta property="og:url" content="https://vannysi.github.io/2017/05/17/routing/index.html">
+<meta property="og:site_name" content="Vanny&#39;s blog">
+<meta property="og:description" content="前端路由的实现原理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://oq3gl9316.bkt.clouddn.com/hashchang.png">
+<meta property="og:image" content="http://oq3gl9316.bkt.clouddn.com/history.png">
+<meta property="article:published_time" content="2017-05-17T18:41:32.000Z">
+<meta property="article:modified_time" content="2020-10-04T13:00:47.344Z">
+<meta property="article:author" content="Vanny">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://oq3gl9316.bkt.clouddn.com/hashchang.png">
+
+<link rel="canonical" href="https://vannysi.github.io/2017/05/17/routing/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>前端路由系统 | Vanny's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vanny's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vannysi.github.io/2017/05/17/routing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar_360.jpeg">
+      <meta itemprop="name" content="Vanny">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanny's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          前端路由系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-05-17 18:41:32" itemprop="dateCreated datePublished" datetime="2017-05-17T18:41:32+00:00">2017-05-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-04 13:00:47" itemprop="dateModified" datetime="2020-10-04T13:00:47+00:00">2020-10-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>content<br>{:toc}</li>
+</ul>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="http://blog.csdn.net/xllily_11/article/details/51820909">(译)Web 开发中前端路由实现的几种方式和适用场景</a></p>
+</blockquote>
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p>百度解释：路由（routing）是指分组从源到目的地时，决定端到端路径的网络范围的进程。<br>维基解释：Routing is the process of selecting a path for traffic in a network, or between or across multiple networks.<br>网友解释：路由是根据不同的<code>url</code>地址展示不同的内容或页面</p>
+<h2 id="前端路由"><a href="#前端路由" class="headerlink" title="前端路由"></a>前端路由</h2><p>大多数情况下，页面是通过服务端根据不同的路由返回不同的页面实现的。而在一些情况下，后端不会给前端提供路由，前端需要达到一些效果就需要自己实现一套路由，由此形成了前端路由。</p>
+<p><code>AJAX</code>的应用、<code>DOM</code>的动态变化等使页面可以在不改变路由的情况下局部甚至是全局进行刷新，极大的提高了用户体验，但同时也带来了一些问题，用户无法去直接通过改变<code>url</code>来获取刚才或者是 Ta 想获取的任一页面，之后单页应用<code>SPA</code>的产生、前后端的完全分离这一问题更加明显，前端路由因此诞生了。</p>
+<p>通过路由来记录页面上<code>AJAX</code>的变化的方式被称为<code>AJAX标签化</code>，如<code>Pjax</code>。而对于较大的(特别是<code>SPA</code>)框架被称为路由系统 ，比如<code>ngRoute</code>、<code>React Router</code>、<code>Vue Router</code>。</p>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>监听路由的变化 =&gt; 请求 Ajax/其它逻辑操作</p>
+<h3 id="history-模式"><a href="#history-模式" class="headerlink" title="history 模式"></a>history 模式</h3><p><code>popstate</code>可以监听到历史记录，当发生调用历史记录(<code>history.go()</code>、<code>history.forward()</code>、<code>history.back()</code>) 时触发<code>popstate</code>事件，之后借助<code>location</code>、<code>history.length</code>、<code>history.state</code>等对页面进行相应操作，历史记录只能使用<code>pushState/replaceState</code>事件<code>push</code>到当前历史栈和<code>replace</code>当前地址 ，前进<code>history.forward()</code>，后退<code>history.back()</code>， 跳转<code>history.go()</code>，获取历史栈的大小<code>history.length</code>，当前页的状态<code>state</code>、<code>title</code>、<code>url</code>， 不能进行除此外其它操作。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这是第<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;coord&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">span</span>&gt;</span>页哦<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;?x=2&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;go(1); return false;&quot;</span>&gt;</span>跳转到第2页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="comment">// 当前页面</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> currentPage = <span class="number">1</span>;</span></span><br><span class="line"><span class="javascript">  <span class="comment">// 点击链接执行该函数</span></span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">go</span>(<span class="params">d</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 更新页码， event是go()压入栈的信息，里面包含state、title、url</span></span></span><br><span class="line">    setupPage(currentPage + d);</span><br><span class="line"><span class="javascript">    <span class="comment">// 压栈：state = 当前页码， title = 当前标题，url = 当前location.search</span></span></span><br><span class="line"><span class="javascript">    history.pushState(currentPage, <span class="built_in">document</span>.title, <span class="string">&quot;?x=&quot;</span> + currentPage);</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="javascript">  <span class="comment">// 点击浏览器的返回按钮时会触发</span></span></span><br><span class="line"><span class="javascript">  onpopstate = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(<span class="string">&quot;你触发了popstate事件哟~&quot;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 更新页码， event是go()压入栈的信息，里面包含state、title、url，这里的event.state为页码</span></span></span><br><span class="line">    setupPage(event.state);</span><br><span class="line">  &#125;;</span><br><span class="line"><span class="javascript">  <span class="comment">// 更新页码 @param page 跳转到第page页</span></span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">setupPage</span>(<span class="params">page</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 当前页改变</span></span></span><br><span class="line">    currentPage = page;</span><br><span class="line"><span class="javascript">    <span class="comment">// 更新标题</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.title = currentPage;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 更新页码</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">&quot;coord&quot;</span>).textContent = currentPage;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 更新a标签里的链接</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.links[<span class="number">0</span>].href = <span class="string">&quot;?x=&quot;</span> + (currentPage + <span class="number">1</span>);</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 更新a标签里的内容</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.links[<span class="number">0</span>].textContent = <span class="string">&quot;跳转到第&quot;</span> + (currentPage + <span class="number">1</span>) + <span class="string">&quot;页&quot;</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="hash-模式"><a href="#hash-模式" class="headerlink" title="hash 模式"></a>hash 模式</h3><p><code>hashchange</code>可以实时的监听<code>hash</code>是否发生变化，当 hash 变化时可以使用<code>location.hash</code>对页面进行操作</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这是第<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;coord&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">span</span>&gt;</span>页哦<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;go(1); return false;&quot;</span>&gt;</span>跳转到第2页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> currentPage = <span class="number">1</span>;</span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">go</span>(<span class="params">d</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 更新本页面的hash</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.location.hash = <span class="string">&quot;#/hash?x=&quot;</span> + (currentPage + d);</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="javascript">  onhashchange = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 更新页码，event包含了newURL、oldURL等信息，getQueryString用于获取x的值</span></span></span><br><span class="line"><span class="javascript">    setupPage(<span class="built_in">parseInt</span>(getQueryString(<span class="string">&quot;x&quot;</span>, <span class="string">&quot;hash&quot;</span>)));</span></span><br><span class="line">  &#125;;</span><br><span class="line"><span class="javascript">  <span class="comment">// 更新页码 @param page 跳转到第page页</span></span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">setupPage</span>(<span class="params">page</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 当前页改变</span></span></span><br><span class="line">    currentPage = page;</span><br><span class="line"><span class="javascript">    <span class="comment">// 更新标题</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.title = currentPage;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 更新页码</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">&quot;coord&quot;</span>).textContent = currentPage;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 更新a标签里的内容</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.links[<span class="number">0</span>].textContent = <span class="string">&quot;跳转到第&quot;</span> + (currentPage + <span class="number">1</span>) + <span class="string">&quot;页&quot;</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">getQueryString</span>(<span class="params">key, method</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> url = method === <span class="string">&quot;hash&quot;</span> ? <span class="built_in">window</span>.location.hash : <span class="built_in">window</span>.location.href;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> url_arr;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (url.indexOf(<span class="string">&quot;?&quot;</span>) !== <span class="number">-1</span>) &#123;</span></span><br><span class="line"><span class="javascript">      url = url.split(<span class="string">&quot;?&quot;</span>);</span></span><br><span class="line"><span class="javascript">      url_arr = url[<span class="number">1</span>].split(<span class="string">&quot;&amp;&quot;</span>);</span></span><br><span class="line"><span class="javascript">      <span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">in</span> url_arr) &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> tmp = url_arr[k].split(<span class="string">&quot;=&quot;</span>);</span></span><br><span class="line">        if (tmp[0] === key) &#123;</span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> tmp[<span class="number">1</span>];</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      url = url[0];</span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    url_arr = url.split(<span class="regexp">/[\\/]/</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">for</span> (<span class="keyword">var</span> n <span class="keyword">in</span> url_arr) &#123;</span></span><br><span class="line">      if (url_arr[n] === key) &#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> url_arr[<span class="built_in">parseInt</span>(n) + <span class="number">1</span>];</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> <span class="literal">false</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="history-与-hash-的区别"><a href="#history-与-hash-的区别" class="headerlink" title="history 与 hash 的区别"></a>history 与 hash 的区别</h3><ol>
+<li><code>history</code>可以记录状态值<code>state</code>，可以根据状态的不同进行操作，<code>hash</code>不能</li>
+<li><code>hash</code>的兼容性比<code>history</code>要好一些(附图)，而且很容易去实现兼容 IE， <code>history</code>只兼容到 IE11，<code>hash</code>兼容到 IE8，如果还要继续向下兼容，可以很容易的自己写一个</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hashchange事件失效时</span></span><br><span class="line"><span class="keyword">var</span> oldHash = location.hash;</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newHash = location.hash;</span><br><span class="line">  <span class="keyword">if</span> (newHash !== oldHash) &#123;</span><br><span class="line">    setupPage(<span class="built_in">parseInt</span>(getQueryString(<span class="string">&quot;x&quot;</span>, <span class="string">&quot;hash&quot;</span>)));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://oq3gl9316.bkt.clouddn.com/hashchang.png" alt="hashchange兼容性"><br><img src="http://oq3gl9316.bkt.clouddn.com/history.png" alt="popstate兼容性"></p>
+<h2 id="history-中-state-的用法"><a href="#history-中-state-的用法" class="headerlink" title="history 中 state 的用法"></a>history 中 state 的用法</h2><p><code>state</code>是压栈<code>pushState</code>和替换<code>replaceState</code>可以传入的一个状态，这个状态无限制，可以是上面例子中的数字，也可以是字符串、数组、对象等等，在触发<code>popstate</code>事件时可以根据状态的不同进行不同操作。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 假设现在有三个历史记录，分别是</span></span><br><span class="line"><span class="comment"> * 1)state1 = &#123;</span></span><br><span class="line"><span class="comment"> *    name: &#x27;a&#x27;,</span></span><br><span class="line"><span class="comment"> *    page: &#x27;./a2.html&#x27;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> * history.pushState(state1, title1, &#x27;./a1.html&#x27;); //记录1</span></span><br><span class="line"><span class="comment"> * 2)state2 = &#123;</span></span><br><span class="line"><span class="comment"> *    name: &#x27;b&#x27;,</span></span><br><span class="line"><span class="comment"> *    bomb: true</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> * history.pushState(state2, title, &#x27;./b.html&#x27;); //记录2</span></span><br><span class="line"><span class="comment"> * 3)history.pushState(null, title, &#x27;./c.html&#x27;); //记录3</span></span><br><span class="line"><span class="comment"> * 现在历史栈里是[&#x27;记录1&#x27;, &#x27;记录2&#x27;, &#x27;记录3&#x27;]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">onpopstate = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 第一次点返回按钮时，event获取到的是记录3的信息，记录3的state为空，所以不进行操作，正常返回c.html</span></span><br><span class="line">  <span class="comment">// 判断event.state是否为空</span></span><br><span class="line">  <span class="keyword">if</span> (event.state) &#123;</span><br><span class="line">    <span class="keyword">var</span> state = event.state;</span><br><span class="line">    <span class="comment">// 第二次点返回按钮时，event获取到的是记录2的信息，记录2的state中bomb为true，所以先弹框，之后正常返回b.html</span></span><br><span class="line">    <span class="keyword">if</span> (state.bomb) &#123;</span><br><span class="line">      alert(<span class="string">&quot;这是弹框哟&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 第三次点返回按钮时，event获取到的是记录1的信息，记录1的state中page存在</span></span><br><span class="line">    <span class="comment">// 所以跳转到a1.html而不是a2.html，达到重定向的效果</span></span><br><span class="line">    <span class="keyword">if</span> (state.page) &#123;</span><br><span class="line">      <span class="built_in">window</span>.location.href = state.page;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Web/" rel="tag"><i class="fa fa-tag"></i> Web</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/03/18/export-excel/" rel="prev" title="导出Excel 自定义样式">
+      <i class="fa fa-chevron-left"></i> 导出Excel 自定义样式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/05/09/ES6/" rel="next" title="ES6学习笔记">
+      ES6学习笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1"><span class="nav-number">1.</span> <span class="nav-text">路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1"><span class="nav-number">2.</span> <span class="nav-text">前端路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#history-%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">history 模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hash-%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">hash 模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#history-%E4%B8%8E-hash-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.3.</span> <span class="nav-text">history 与 hash 的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#history-%E4%B8%AD-state-%E7%9A%84%E7%94%A8%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">history 中 state 的用法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Vanny"
+      src="/images/avatar_360.jpeg">
+  <p class="site-author-name" itemprop="name">Vanny</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/vannysi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;vannysi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/diff399202@sina.cn" title="E-Mail → diff399202@sina.cn"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/2565903864" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;2565903864" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.yuque.com/ywc" title="Yuque → https:&#x2F;&#x2F;www.yuque.com&#x2F;ywc" rel="noopener" target="_blank"><i class="fa fa-link fa-fw"></i>Yuque</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanny</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
