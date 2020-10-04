@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vannysi.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前端开发JS MDN Web docs  ECMAScript 6 入门  ES6 你可能不知道的事 - 进阶篇  移动端 H5 页面高清多屏适配方案  虚拟键盘与 fixed 带给移动端的痛！  JavaScript 标准参考教程（alpha）  工作中的“闭包”与事件委托的“阻止冒泡”   CSS CSS hack  纯 CSS 画的基本图形  CSS 巧妙实现分隔线的几种方法  七种 css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网页收藏">
+<meta property="og:url" content="https://vannysi.github.io/2020/08/24/yuque/%E7%BD%91%E9%A1%B5%E6%94%B6%E8%97%8F/index.html">
+<meta property="og:site_name" content="Vanny&#39;s blog">
+<meta property="og:description" content="前端开发JS MDN Web docs  ECMAScript 6 入门  ES6 你可能不知道的事 - 进阶篇  移动端 H5 页面高清多屏适配方案  虚拟键盘与 fixed 带给移动端的痛！  JavaScript 标准参考教程（alpha）  工作中的“闭包”与事件委托的“阻止冒泡”   CSS CSS hack  纯 CSS 画的基本图形  CSS 巧妙实现分隔线的几种方法  七种 css">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-24T02:52:15.000Z">
+<meta property="article:modified_time" content="2020-10-04T15:35:05.189Z">
+<meta property="article:author" content="Vanny">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vannysi.github.io/2020/08/24/yuque/%E7%BD%91%E9%A1%B5%E6%94%B6%E8%97%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>网页收藏 | Vanny's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="referrer" content="no-referrer" />
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vanny's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vannysi.github.io/2020/08/24/yuque/%E7%BD%91%E9%A1%B5%E6%94%B6%E8%97%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar_360.jpeg">
+      <meta itemprop="name" content="Vanny">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanny's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网页收藏
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-24 02:52:15" itemprop="dateCreated datePublished" datetime="2020-08-24T02:52:15+00:00">2020-08-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-04 15:35:05" itemprop="dateModified" datetime="2020-10-04T15:35:05+00:00">2020-10-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前端开发"><a href="#前端开发" class="headerlink" title="前端开发"></a><strong>前端开发</strong></h2><h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a><strong>JS</strong></h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/">MDN Web docs</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://es6.ruanyifeng.com/">ECMAScript 6 入门</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.tuicool.com/articles/Z3QnieJ">ES6 你可能不知道的事 - 进阶篇</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.cocoachina.com/webapp/20150715/12585.html">移动端 H5 页面高清多屏适配方案</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/yexiaochai/p/3561939.html">虚拟键盘与 fixed 带给移动端的痛！</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://javascript.ruanyifeng.com/">JavaScript 标准参考教程（alpha）</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/yexiaochai/p/3561797.html">工作中的“闭包”与事件委托的“阻止冒泡”</a></p>
+</li>
+</ul>
+<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a><strong>CSS</strong></h3><ul>
+<li><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/dolphinX/p/3292630.html">CSS hack</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.jb51.net/css/41448.html">纯 CSS 画的基本图形</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.daqianduan.com/4258.html">CSS 巧妙实现分隔线的几种方法</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.tuicool.com/articles/qmQfYjz">七种 css 方式让一个容器水平垂直居中</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/tzz-ing/p/5028550.html">-WEBKIT-USER-SELECT:NONE 导致输入框无法输入</a>**</p>
+</li>
+</ul>
+<h3 id="React"><a href="#React" class="headerlink" title="React"></a><strong>React</strong></h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/20361937?columnSlug=purerender">React Mixin 的前世今生</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000007295553?_ea=1300560">react 父组件怎么获取子组件的这个值？</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://cnodejs.org/topic/590c35f6ba8670562a40ed3b">使用 webpack 的 require.context 实现路由“去中心化”管理</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25003814">服务端渲染性能大乱斗：Vue, React, Preact, Rax, Marko</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://cnodejs.org/topic/566a35cb24b586c83b63fcb6">React Server Side Rendering 解决 SPA 应用的 SEO 问题</a>**</p>
+</li>
+</ul>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a><strong>HTTP</strong></h3><ul>
+<li><p><a target="_blank" rel="noopener" href="http://www.alloyteam.com/2015/03/http2-0-di-qi-miao-ri-chang/">HTTP2.0 的奇妙日常</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/650ad90bf563#">简单粗暴系列之 HTTPS 原理</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01">Hypertext Transfer Protocol – HTTP/1.1</a></p>
+</li>
+</ul>
+<h3 id="文档-API"><a href="#文档-API" class="headerlink" title="文档(API)"></a><strong>文档(API)</strong></h3><ul>
+<li><a target="_blank" rel="noopener" href="https://bspace.1688.com/">1688 空间站</a></li>
+<li><a target="_blank" rel="noopener" href="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_7&index=6">微信支付开发文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://myjsapi.alipay.com/jsapi/index.html">支付宝 H5 开放文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://doc.open.alipay.com/docs/doc.htm?articleId=106716&docType=1">在线买单类插件技术实现规范</a>**</li>
+</ul>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a><strong>其它</strong></h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/jikeytang/front-end-collect">前端收集</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://webpack.docschina.org/">Webpack 中文文档</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://learngitbranching.js.org/">Learn Git Branching</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.zhangxinxu.com/wordpress/2011/05/web%E9%A1%B5%E9%9D%A2%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E5%8F%AF%E7%94%A8%E5%AD%97%E7%AC%A6%E4%BB%8B%E7%BB%8D/">web 页面相关的一些常见可用字符介绍</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://juejin.im/post/5ab3f77df265da2392364341">2018 年了，你还是只会 npm install 吗？</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.2cto.com/kf/201202/118111.html">How browsers work–Behind the scenes of modern web browsers 浏览器</a></p>
+</li>
+</ul>
+<h2 id="后端开发"><a href="#后端开发" class="headerlink" title="后端开发"></a><strong>后端开发</strong></h2><h3 id="node"><a href="#node" class="headerlink" title="node"></a><strong>node</strong></h3><ul>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/fisheleven/p/6775380.html?utm_source=itdadao&utm_medium=referral">nodejs prefix (全局) 和 cache (缓存) windows 下设置</a></li>
+</ul>
+<h2 id="博客官网"><a href="#博客官网" class="headerlink" title="博客官网"></a><strong>博客官网</strong></h2><h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a><strong>前端</strong></h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/nuysoft/Mock/wiki/Getting-Started">Mock</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.barretlee.com/entry/">小胡子哥</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/xllily_11">前端你别闹</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/yuanzm">红豆依旧在</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://eslint.org/">ESLint 官网</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://riny.net/">Bubblings Blog</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/">LeetCode</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://fed.taobao.org/">淘系前端团队</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://fequan.com/">前端圈</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://juejin.im/user/166781495814247/posts">百命</a></p>
+</li>
+</ul>
+<h2 id="杂七杂八"><a href="#杂七杂八" class="headerlink" title="杂七杂八"></a><strong>杂七杂八</strong></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://shimo.im/sheets/CdTPcqwXdxcTHYWg/ykCsx"><strong>发票教程</strong></a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/trending/javascript?since=daily"><strong>每日新项目</strong></a></li>
+<li><a target="_blank" rel="noopener" href="https://free-ss.site/"><strong>免费 SS 账号</strong></a></li>
+<li><a target="_blank" rel="noopener" href="http://tr1.freeair888.club/ss%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7/"><strong>免费 SS 账号</strong></a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ted.com/"><strong>TED 学习网站</strong></a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zamzar.com/"><strong>在线文件格式转换</strong></a></li>
+<li><a target="_blank" rel="noopener" href="https://fonts.google.com/"><strong>谷歌字体在线下载</strong></a></li>
+</ul>
+<p>**</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/25/yuque/To%20B%20%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1/" rel="prev" title="To B 产品设计">
+      <i class="fa fa-chevron-left"></i> To B 产品设计
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/19/yuque/%E6%97%A9%E6%97%A9%E8%81%8A%2002%20%E6%9C%9F%20%E5%89%8D%E7%AB%AF%E6%90%9E%E5%9F%BA%E5%BB%BA/" rel="next" title="早早聊 02 期 前端搞基建">
+      早早聊 02 期 前端搞基建 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91"><span class="nav-number">1.</span> <span class="nav-text">前端开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JS"><span class="nav-number">1.1.</span> <span class="nav-text">JS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">1.2.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React"><span class="nav-number">1.3.</span> <span class="nav-text">React</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-number">1.4.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%A1%A3-API"><span class="nav-number">1.5.</span> <span class="nav-text">文档(API)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AE%83"><span class="nav-number">1.6.</span> <span class="nav-text">其它</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91"><span class="nav-number">2.</span> <span class="nav-text">后端开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#node"><span class="nav-number">2.1.</span> <span class="nav-text">node</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E5%AE%98%E7%BD%91"><span class="nav-number">3.</span> <span class="nav-text">博客官网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF"><span class="nav-number">3.1.</span> <span class="nav-text">前端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB"><span class="nav-number">4.</span> <span class="nav-text">杂七杂八</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Vanny"
+      src="/images/avatar_360.jpeg">
+  <p class="site-author-name" itemprop="name">Vanny</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/vannysi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;vannysi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i><span class="label">GitHub</span></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/diff399202@sina.cn" title="E-Mail → diff399202@sina.cn"><i class="fa fa-envelope fa-fw"></i><span class="label">E-Mail</span></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/2565903864" title="微博 → https:&#x2F;&#x2F;weibo.com&#x2F;2565903864" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i><span class="label">微博</span></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.yuque.com/ywc" title="语雀 → https:&#x2F;&#x2F;www.yuque.com&#x2F;ywc" rel="noopener" target="_blank"><i class="fa fa-link fa-fw"></i><span class="label">语雀</span></a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanny</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

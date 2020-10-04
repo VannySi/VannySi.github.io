@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vannysi.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="2020.01.11leader 是整个团队的一个天花板，你需要不断的自我成长去拓宽整个团队的路。  竹隐 - 从技术架构走向技术管理基础：如何打造技术底盘 技术是安身立命之本，足够强大的技术底盘是转管理的基本条件。  P6：在技术上有所沉淀，在业务上可以独当一面。 P7：有整体的把控能力；负责具体的产品线，而不是只专注于业务；对产品的思考与总结；带新人。 抉择：未来是否要走管理当达到可以带新人">
+<meta property="og:type" content="article">
+<meta property="og:title" content="早早聊 01 期 前端转管理">
+<meta property="og:url" content="https://vannysi.github.io/2020/08/03/yuque/%E6%97%A9%E6%97%A9%E8%81%8A%2001%20%E6%9C%9F%20%E5%89%8D%E7%AB%AF%E8%BD%AC%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="Vanny&#39;s blog">
+<meta property="og:description" content="2020.01.11leader 是整个团队的一个天花板，你需要不断的自我成长去拓宽整个团队的路。  竹隐 - 从技术架构走向技术管理基础：如何打造技术底盘 技术是安身立命之本，足够强大的技术底盘是转管理的基本条件。  P6：在技术上有所沉淀，在业务上可以独当一面。 P7：有整体的把控能力；负责具体的产品线，而不是只专注于业务；对产品的思考与总结；带新人。 抉择：未来是否要走管理当达到可以带新人">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/84971/1596430780218-f67686dc-baf2-4790-a552-bb5081d80258.png#align=left&display=inline&height=207&margin=%5Bobject%20Object%5D&name=image.png&originHeight=825&originWidth=1466&size=250030&status=done&style=none&width=367">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/84971/1596430795571-7c1402c7-664f-41af-b84d-d3a563d7f204.png#align=left&display=inline&height=207&margin=%5Bobject%20Object%5D&name=image.png&originHeight=825&originWidth=1466&size=177705&status=done&style=none&width=367">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/84971/1596603394916-195d0310-51fc-4256-ad60-17acf895ab36.png#align=left&display=inline&height=302&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1208&originWidth=1506&size=512748&status=done&style=none&width=377">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/84971/1596603664886-ff63372b-ca65-4b38-ab43-ddf82ef32842.png#align=left&display=inline&height=207&margin=%5Bobject%20Object%5D&name=image.png&originHeight=825&originWidth=1466&size=1007295&status=done&style=none&width=367">
+<meta property="article:published_time" content="2020-08-03T04:16:54.000Z">
+<meta property="article:modified_time" content="2020-10-04T15:35:05.189Z">
+<meta property="article:author" content="Vanny">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2020/png/84971/1596430780218-f67686dc-baf2-4790-a552-bb5081d80258.png#align=left&display=inline&height=207&margin=%5Bobject%20Object%5D&name=image.png&originHeight=825&originWidth=1466&size=250030&status=done&style=none&width=367">
+
+<link rel="canonical" href="https://vannysi.github.io/2020/08/03/yuque/%E6%97%A9%E6%97%A9%E8%81%8A%2001%20%E6%9C%9F%20%E5%89%8D%E7%AB%AF%E8%BD%AC%E7%AE%A1%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>早早聊 01 期 前端转管理 | Vanny's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="referrer" content="no-referrer" />
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vanny's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vannysi.github.io/2020/08/03/yuque/%E6%97%A9%E6%97%A9%E8%81%8A%2001%20%E6%9C%9F%20%E5%89%8D%E7%AB%AF%E8%BD%AC%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar_360.jpeg">
+      <meta itemprop="name" content="Vanny">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanny's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          早早聊 01 期 前端转管理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-03 04:16:54" itemprop="dateCreated datePublished" datetime="2020-08-03T04:16:54+00:00">2020-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-04 15:35:05" itemprop="dateModified" datetime="2020-10-04T15:35:05+00:00">2020-10-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>2020.01.11<br>leader 是整个团队的一个天花板，你需要不断的自我成长去拓宽整个团队的路。</p>
+</blockquote>
+<h2 id="竹隐-从技术架构走向技术管理"><a href="#竹隐-从技术架构走向技术管理" class="headerlink" title="竹隐 - 从技术架构走向技术管理"></a>竹隐 - 从技术架构走向技术管理</h2><h3 id="基础：如何打造技术底盘"><a href="#基础：如何打造技术底盘" class="headerlink" title="基础：如何打造技术底盘"></a>基础：如何打造技术底盘</h3><blockquote>
+<p>技术是安身立命之本，足够强大的技术底盘是转管理的基本条件。</p>
+</blockquote>
+<p>P6：在技术上有所沉淀，在业务上可以独当一面。</p>
+<p>P7：有整体的把控能力；负责具体的产品线，而不是只专注于业务；对产品的思考与总结；带新人。</p>
+<h3 id="抉择：未来是否要走管理"><a href="#抉择：未来是否要走管理" class="headerlink" title="抉择：未来是否要走管理"></a>抉择：未来是否要走管理</h3><p>当达到可以带新人，独立负责一条产品线，技术上也没有什么难度时就是一个新的瓶颈。这是一个不错的用来转管理(或者深研技术)的时间节点，那么我现在主要的目标还是有所沉淀 &amp;&amp; 可以负责具体的产品线，有整体的把控能力，建立自己的知识体系。</p>
+<h3 id="路径：技术管理如何突破"><a href="#路径：技术管理如何突破" class="headerlink" title="路径：技术管理如何突破"></a>路径：技术管理如何突破</h3><ol>
+<li>懂技术，懂业务，有视野<ol>
+<li>技术不能拉下，多学习，做 codeReview，多面试，多听分享</li>
+<li>跳出技术思考业务，技术服务于业务，了解业务，多与业务沟通</li>
+<li>视野要高一些，知道大方向应该是什么样子的</li>
+</ol>
+</li>
+<li>会沟通，会管理，会撕逼<ol>
+<li>站在对方的角度说服对方</li>
+<li>向上/向下管理</li>
+<li>技术规划时为团队争取时间，出问题后勇于担当。</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/84971/1596430780218-f67686dc-baf2-4790-a552-bb5081d80258.png#align=left&display=inline&height=207&margin=%5Bobject%20Object%5D&name=image.png&originHeight=825&originWidth=1466&size=250030&status=done&style=none&width=367" alt="image.png"><img src="https://cdn.nlark.com/yuque/0/2020/png/84971/1596430795571-7c1402c7-664f-41af-b84d-d3a563d7f204.png#align=left&display=inline&height=207&margin=%5Bobject%20Object%5D&name=image.png&originHeight=825&originWidth=1466&size=177705&status=done&style=none&width=367" alt="image.png"></p>
+<h3 id="总结与感悟"><a href="#总结与感悟" class="headerlink" title="总结与感悟"></a>总结与感悟</h3><p>软实力是不去做很难体现的(沟通/管理)，但硬实力是可以体现出来的(技术)。目前的当务之急是提高自己的技术，要有一棵属于自己的相对完整的技能树。</p>
+<h2 id="Scott-管理转型"><a href="#Scott-管理转型" class="headerlink" title="Scott - 管理转型"></a>Scott - 管理转型</h2><h3 id="摸底：认识编程与管理的不同"><a href="#摸底：认识编程与管理的不同" class="headerlink" title="摸底：认识编程与管理的不同"></a>摸底：认识编程与管理的不同</h3><ol>
+<li>对象：人与事</li>
+<li>策略：做事做人到搞人搞事，要学着自己去寻找机会</li>
+<li>能力：技术、产品</li>
+</ol>
+<h3 id="定位：在行业中寻找自身优势"><a href="#定位：在行业中寻找自身优势" class="headerlink" title="定位：在行业中寻找自身优势"></a>定位：在行业中寻找自身优势</h3><ol>
+<li>竞争优势：技术、产品、业务、人脉</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/84971/1596603394916-195d0310-51fc-4256-ad60-17acf895ab36.png#align=left&display=inline&height=302&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1208&originWidth=1506&size=512748&status=done&style=none&width=377" alt="image.png"></p>
+<h3 id="练习：多线程的闭环管理模型"><a href="#练习：多线程的闭环管理模型" class="headerlink" title="练习：多线程的闭环管理模型"></a>练习：多线程的闭环管理模型</h3><ol>
+<li>利用能力长板做管理</li>
+<li>抽象管理问题</li>
+<li>自我定位 &lt;-&gt; 摸底诊断 -&gt; 规划执行 -&gt; 沉淀输出<ul>
+<li>自我定位<ul>
+<li>我是谁：对角色负责</li>
+<li>我想成为谁：职业规划，对自己负责</li>
+<li>我想成就谁：对业务负责，对组织负责</li>
+<li>我拥有什么：自我评估，有什么，缺什么</li>
+</ul>
+</li>
+<li>摸底诊断<ul>
+<li>社区现状：团队所处阶段</li>
+<li>业务现状：过去与未来</li>
+<li>团队现状：所处价值位置，成员能力现状</li>
+<li>技术现状：基础设施现状，协同方式现状</li>
+</ul>
+</li>
+<li>规划执行<ul>
+<li>价值共识：沟通获得授权</li>
+<li>制定目标：目标具象，过程量化</li>
+<li>排兵布阵：立项推动，搭台沟通</li>
+<li>复盘优化：复盘问题，调教目标</li>
+</ul>
+</li>
+<li>沉淀输出<ul>
+<li>内部推广：切场景输送价值</li>
+<li>总结分享：内部技术沉淀，外部技术输出</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="总结与感悟-1"><a href="#总结与感悟-1" class="headerlink" title="总结与感悟"></a>总结与感悟</h3><ol>
+<li>做一个自己成长历程的流程图，考虑自己未来的走向</li>
+<li>当你不知道真正想要做什么的时候，就写下来利弊、问题、解决方法。</li>
+<li>方法论<ol>
+<li>自我定位，清楚自己的职业规划。</li>
+<li>理清优势，明白自己擅长的领域。</li>
+<li>摸清底线，知道公司的战略意图。</li>
+<li>真正做事，把握节奏，做出成果。</li>
+<li>理顺模型，认同标准，组织养成。</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/84971/1596603664886-ff63372b-ca65-4b38-ab43-ddf82ef32842.png#align=left&display=inline&height=207&margin=%5Bobject%20Object%5D&name=image.png&originHeight=825&originWidth=1466&size=1007295&status=done&style=none&width=367" alt="image.png"></p>
+<h2 id="堂主-如何推动与影响中型前端团队的成长"><a href="#堂主-如何推动与影响中型前端团队的成长" class="headerlink" title="堂主 - 如何推动与影响中型前端团队的成长"></a>堂主 - 如何推动与影响中型前端团队的成长</h2><blockquote>
+</blockquote>
+<h3 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h3><blockquote>
+<p>管理，就是靠别人拿结果。</p>
+</blockquote>
+<p>管理就是在不确定性中寻找确定性，通过成就他人成就自己，基于数据阐明一切改变。</p>
+<p>管理成员平均意识和能力越偏向于一般般和强执行的越需要强化——即越需要明确清晰的制度和流程。反之团队成员越偏向于自驱和专家的则越需要强化价值观，文化驱动，尽量降低强硬的流程制度对人的直观约束感。</p>
+<h3 id="人"><a href="#人" class="headerlink" title="人"></a>人</h3><ul>
+<li>选筛：梯队建设<ul>
+<li>内部选拔：价值观、利他精神、技术能力、业务经验、皮实、要性、认知、思维</li>
+<li>外部招聘：技术能力、业务深度、推动能力、沟通能力、皮实、要性、好奇心</li>
+</ul>
+</li>
+<li>育用：处理好输入与输出<ul>
+<li>育人：认知升级、维度升级、复杂度升级、120% 原则、阶梯式成长</li>
+<li>用人：业务 PM、跨职能推动、主导空间、提供放大器、合作关系</li>
+</ul>
+</li>
+<li>换血：团队成长的必经之路<ul>
+<li>主动淘汰：要求前置，过程跟足；立场要站稳，对公不对私；心要慈，刀要快；做人留一线，日后好相见</li>
+<li>被动流失：关键岗位必须有 backup；避免系统性、能力性塌方；勿忽视“熟人场”的影响</li>
+</ul>
+</li>
+<li>结果：绩效与提升</li>
+</ul>
+<h3 id="事"><a href="#事" class="headerlink" title="事"></a>事</h3><ul>
+<li>建设：业务支撑、技术基建、体系结构</li>
+<li>视角</li>
+</ul>
+<h3 id="文化"><a href="#文化" class="headerlink" title="文化"></a>文化</h3><ul>
+<li>团队共识</li>
+<li>价值观</li>
+<li>组织发展维度</li>
+</ul>
+<h3 id="影响力"><a href="#影响力" class="headerlink" title="影响力"></a>影响力</h3><h3 id="数据指标"><a href="#数据指标" class="headerlink" title="数据指标"></a>数据指标</h3><blockquote>
+<p>管理者推动改变，数据说明改变。</p>
+</blockquote>
+<h2 id="个人总结与感悟"><a href="#个人总结与感悟" class="headerlink" title="个人总结与感悟"></a>个人总结与感悟</h2><p>竹隐的演讲，算是给我了一个阿里 P6、P7、P8 的定位，通过他的讲解，我认为自己目前处于 P6 与 P7 之间，离 P7 可能就差一点契机，想进阿里看看自己能走到哪一步。就我目前的工作经验来说，我并不排斥做管理，在我化解和同事的矛盾，沟通越来越轻松时我所获得的满足感是不亚于解决了一个技术难题的。而我没有体会过一个好的管理者是如何带团队的，所以我迫切的想到一个和谐的、有优秀管理者的团队去学习、模仿、尝试，那一定是一个很棒的体验。</p>
+<p>如果是竹隐的演讲是告诉我怎样是一个合格的技术人员，怎样可以去转管理。那么 Scott 的演讲其实更偏向于我对自己的能力补足，他让我看到了很多我没有意识到的问题。虽然有些技能我没有意识到，但我在之前的沟通中潜意识的用到了，也是很神奇的过程，Scott 让我看到我还有很多地方需要改进，现在就处于一种方法论有了，就实践的状态。</p>
+<p>堂主则给我呈现了一个管理完善的团队，只有一个感受，好想进去体验一下，希望我未来能有这个荣幸。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/07/yuque/%E5%BA%8F/" rel="prev" title="序">
+      <i class="fa fa-chevron-left"></i> 序
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/25/yuque/%E5%B0%8F%E7%8B%97%E9%92%B1%E9%92%B1/" rel="next" title="小狗钱钱">
+      小狗钱钱 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%B9%E9%9A%90-%E4%BB%8E%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E8%B5%B0%E5%90%91%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">竹隐 - 从技术架构走向技术管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%A6%82%E4%BD%95%E6%89%93%E9%80%A0%E6%8A%80%E6%9C%AF%E5%BA%95%E7%9B%98"><span class="nav-number">1.1.</span> <span class="nav-text">基础：如何打造技术底盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%89%E6%8B%A9%EF%BC%9A%E6%9C%AA%E6%9D%A5%E6%98%AF%E5%90%A6%E8%A6%81%E8%B5%B0%E7%AE%A1%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">抉择：未来是否要走管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%EF%BC%9A%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E5%A6%82%E4%BD%95%E7%AA%81%E7%A0%B4"><span class="nav-number">1.3.</span> <span class="nav-text">路径：技术管理如何突破</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E6%84%9F%E6%82%9F"><span class="nav-number">1.4.</span> <span class="nav-text">总结与感悟</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scott-%E7%AE%A1%E7%90%86%E8%BD%AC%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">Scott - 管理转型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%B8%E5%BA%95%EF%BC%9A%E8%AE%A4%E8%AF%86%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%8D%E5%90%8C"><span class="nav-number">2.1.</span> <span class="nav-text">摸底：认识编程与管理的不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%BD%8D%EF%BC%9A%E5%9C%A8%E8%A1%8C%E4%B8%9A%E4%B8%AD%E5%AF%BB%E6%89%BE%E8%87%AA%E8%BA%AB%E4%BC%98%E5%8A%BF"><span class="nav-number">2.2.</span> <span class="nav-text">定位：在行业中寻找自身优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E9%97%AD%E7%8E%AF%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">练习：多线程的闭环管理模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E6%84%9F%E6%82%9F-1"><span class="nav-number">2.4.</span> <span class="nav-text">总结与感悟</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%82%E4%B8%BB-%E5%A6%82%E4%BD%95%E6%8E%A8%E5%8A%A8%E4%B8%8E%E5%BD%B1%E5%93%8D%E4%B8%AD%E5%9E%8B%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E7%9A%84%E6%88%90%E9%95%BF"><span class="nav-number">3.</span> <span class="nav-text">堂主 - 如何推动与影响中型前端团队的成长</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%A1%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%BA"><span class="nav-number">3.2.</span> <span class="nav-text">人</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B"><span class="nav-number">3.3.</span> <span class="nav-text">事</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E5%8C%96"><span class="nav-number">3.4.</span> <span class="nav-text">文化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E5%8A%9B"><span class="nav-number">3.5.</span> <span class="nav-text">影响力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%8C%87%E6%A0%87"><span class="nav-number">3.6.</span> <span class="nav-text">数据指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93%E4%B8%8E%E6%84%9F%E6%82%9F"><span class="nav-number">4.</span> <span class="nav-text">个人总结与感悟</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Vanny"
+      src="/images/avatar_360.jpeg">
+  <p class="site-author-name" itemprop="name">Vanny</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/vannysi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;vannysi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i><span class="label">GitHub</span></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/diff399202@sina.cn" title="E-Mail → diff399202@sina.cn"><i class="fa fa-envelope fa-fw"></i><span class="label">E-Mail</span></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/2565903864" title="微博 → https:&#x2F;&#x2F;weibo.com&#x2F;2565903864" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i><span class="label">微博</span></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.yuque.com/ywc" title="语雀 → https:&#x2F;&#x2F;www.yuque.com&#x2F;ywc" rel="noopener" target="_blank"><i class="fa fa-link fa-fw"></i><span class="label">语雀</span></a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanny</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

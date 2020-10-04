@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vannysi.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="APP 界面设计中的趋同化：近期看来是有益的 让用户更加关注内容和结果  意味着更好的可用性  设计不应止步于视觉   趋同的设计是否会扼杀创造力？ 我认为并不会，相对于图标、色彩的创造力，我认为在业务流程、模式设计方面可以更好的去体现一个设计师的创造力，而且界面设计的用户体验总是弱于实际需求的，我很赞同 APP 界面设计的趋同化。 APP 设计：那些打动人心的设计点 http:&#x2F;&#x2F;www.wos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="To B 产品设计">
+<meta property="og:url" content="https://vannysi.github.io/2020/08/25/yuque/To%20B%20%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="Vanny&#39;s blog">
+<meta property="og:description" content="APP 界面设计中的趋同化：近期看来是有益的 让用户更加关注内容和结果  意味着更好的可用性  设计不应止步于视觉   趋同的设计是否会扼杀创造力？ 我认为并不会，相对于图标、色彩的创造力，我认为在业务流程、模式设计方面可以更好的去体现一个设计师的创造力，而且界面设计的用户体验总是弱于实际需求的，我很赞同 APP 界面设计的趋同化。 APP 设计：那些打动人心的设计点 http:&#x2F;&#x2F;www.wos">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/84971/1598321761299-84c56d81-ea36-4e48-8e49-0d25b5be0418.png#align=left&display=inline&height=317&margin=%5Bobject%20Object%5D&name=image.png&originHeight=634&originWidth=810&size=129682&status=done&style=none&width=405">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/jpeg/84971/1598322215854-0f6a889b-d2cd-427c-9b8a-ba6526e870b1.jpeg#align=left&display=inline&height=1013&margin=%5Bobject%20Object%5D&name=image.jpeg&originHeight=1013&originWidth=1375&size=74772&status=done&style=none&width=1375">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/jpeg/84971/1598323272041-caad645f-0c21-44f7-b415-9589f0b48cbc.jpeg#align=left&display=inline&height=1873&margin=%5Bobject%20Object%5D&name=image.jpeg&originHeight=1873&originWidth=3000&size=254023&status=done&style=none&width=3000">
+<meta property="article:published_time" content="2020-08-25T02:09:05.000Z">
+<meta property="article:modified_time" content="2020-10-04T15:35:05.189Z">
+<meta property="article:author" content="Vanny">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2020/png/84971/1598321761299-84c56d81-ea36-4e48-8e49-0d25b5be0418.png#align=left&display=inline&height=317&margin=%5Bobject%20Object%5D&name=image.png&originHeight=634&originWidth=810&size=129682&status=done&style=none&width=405">
+
+<link rel="canonical" href="https://vannysi.github.io/2020/08/25/yuque/To%20B%20%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>To B 产品设计 | Vanny's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="referrer" content="no-referrer" />
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vanny's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vannysi.github.io/2020/08/25/yuque/To%20B%20%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar_360.jpeg">
+      <meta itemprop="name" content="Vanny">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanny's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          To B 产品设计
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-25 02:09:05" itemprop="dateCreated datePublished" datetime="2020-08-25T02:09:05+00:00">2020-08-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-04 15:35:05" itemprop="dateModified" datetime="2020-10-04T15:35:05+00:00">2020-10-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="APP-界面设计中的趋同化：近期看来是有益的"><a href="#APP-界面设计中的趋同化：近期看来是有益的" class="headerlink" title="APP 界面设计中的趋同化：近期看来是有益的"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/ucd/1468208.html">APP 界面设计中的趋同化：近期看来是有益的</a></h2><ol>
+<li><p>让用户更加关注内容和结果</p>
+</li>
+<li><p>意味着更好的可用性</p>
+</li>
+<li><p>设计不应止步于视觉</p>
+</li>
+</ol>
+<p><strong>趋同的设计是否会扼杀创造力？</strong></p>
+<p>我认为并不会，相对于图标、色彩的创造力，我认为在业务流程、模式设计方面可以更好的去体现一个设计师的创造力，而且界面设计的用户体验总是弱于实际需求的，我很赞同 APP 界面设计的趋同化。</p>
+<h2 id="APP-设计：那些打动人心的设计点"><a href="#APP-设计：那些打动人心的设计点" class="headerlink" title="APP 设计：那些打动人心的设计点"></a>APP 设计：那些打动人心的设计点</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.woshipm.com/ucd/590912.html">http://www.woshipm.com/ucd/590912.html</a> &gt; <a target="_blank" rel="noopener" href="http://www.woshipm.com/ucd/609817.html">http://www.woshipm.com/ucd/609817.html</a></p>
+</blockquote>
+<ol>
+<li><p>把发邮件变成一次纸飞机的飞行</p>
+</li>
+<li><p>点击底部标题栏返回顶部</p>
+</li>
+<li><p>为用户下一步操作做设计</p>
+</li>
+<li><p>解救强迫症的滑动去除小红点</p>
+</li>
+<li><p>在不打扰用户的前提下，提示用户</p>
+</li>
+<li><p>将反馈变得有趣</p>
+</li>
+<li><p>用滑动代替点击</p>
+</li>
+<li><p>随机奖励</p>
+</li>
+<li><p>可以跳页的页面控制器</p>
+</li>
+<li><p>有消息可以弹框</p>
+</li>
+<li><p>自动填充网址</p>
+</li>
+<li><p>智能选座</p>
+</li>
+<li><p>将操作区域放在单手热区内</p>
+</li>
+<li><p>沉浸感</p>
+</li>
+</ol>
+<h2 id="特殊情况下的-APP-设计"><a href="#特殊情况下的-APP-设计" class="headerlink" title="特殊情况下的 APP 设计"></a>特殊情况下的 APP 设计</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/702279.html">http://www.woshipm.com/pd/702279.html</a> &gt; <a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/707196.html">http://www.woshipm.com/pd/707196.html</a> &gt; <a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/708231.html">http://www.woshipm.com/pd/708231.html</a></p>
+</blockquote>
+<h3 id="注册登录页设计"><a href="#注册登录页设计" class="headerlink" title="注册登录页设计"></a>注册登录页设计</h3><ol>
+<li><p>用显示/隐藏 Icon 代替输入两遍密码</p>
+</li>
+<li><p>弹出相对应的输入键盘</p>
+</li>
+<li><p>对手机号码进行 3 4 4 的分布</p>
+</li>
+<li><p>登录时增加一键清空 Icon</p>
+</li>
+<li><p>清晰的错误反馈</p>
+</li>
+</ol>
+<h3 id="启动页面设计"><a href="#启动页面设计" class="headerlink" title="启动页面设计"></a>启动页面设计</h3><ol>
+<li><p>快速启动类</p>
+</li>
+<li><p>品牌类</p>
+</li>
+<li><p>情感共鸣类</p>
+</li>
+<li><p>广告展示类</p>
+</li>
+<li><p>节日类</p>
+</li>
+<li><p>其他可能性</p>
+</li>
+</ol>
+<h3 id="loading-设计"><a href="#loading-设计" class="headerlink" title="loading 设计"></a>loading 设计</h3><ol>
+<li><p>标题 loading</p>
+</li>
+<li><p>白屏 loading</p>
+</li>
+<li><p>优先加载</p>
+</li>
+<li><p>骨架屏</p>
+</li>
+<li><p>下拉刷新加载</p>
+</li>
+<li><p>分段加载</p>
+</li>
+<li><p>智能加载</p>
+</li>
+</ol>
+<h2 id="浅析-APP-设计：掌握市场截图设计原则"><a href="#浅析-APP-设计：掌握市场截图设计原则" class="headerlink" title="浅析 APP 设计：掌握市场截图设计原则"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/754854.html">浅析 APP 设计：掌握市场截图设计原则</a></h2><p>目的：帮助用户更好的了解产品的属性、定位和功能</p>
+<ol>
+<li><p>平台规范</p>
+</li>
+<li><p>设计原则</p>
+<ol>
+<li><p>首屏原则：利用最短时间吸引用户关注。</p>
+</li>
+<li><p>亮点原则：让用户捕捉重点，便于用户了解产品核心功能特性，收获有价值的信息。</p>
+</li>
+<li><p>简洁原则：增加内容信息的易读性和可读性，不易使用户视觉疲劳。</p>
+</li>
+<li><p>对比原则：（格式塔心灵美学）对比和等同是视觉展示的重要部分，是用户明确信息展示的重要方式。</p>
+</li>
+<li><p>统一原则：风格/样式/字体统一，视觉上的统一，能增加易读性，不易增强阅读难度。</p>
+</li>
+<li><p>配色原则：通过色彩抓住用户心理活动，满足用户心理需求。</p>
+</li>
+<li><p>元素原则：元素能够丰富画面，让画面更加活泼。</p>
+</li>
+</ol>
+</li>
+<li><p>设计样式</p>
+<ol>
+<li><p>原生界面</p>
+</li>
+<li><p>截图 + 说明</p>
+</li>
+<li><p>截图 + 手机框 + 说明</p>
+</li>
+<li><p>截图 + 手机框 + 焦点/元素放大 + 说明</p>
+</li>
+<li><p>跨屏界面</p>
+</li>
+<li><p>截图或元素的应用</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="APP-导航设计模式与信息布局设计模式"><a href="#APP-导航设计模式与信息布局设计模式" class="headerlink" title="APP 导航设计模式与信息布局设计模式"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/753879.html">APP 导航设计模式与信息布局设计模式</a></h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/84971/1598321761299-84c56d81-ea36-4e48-8e49-0d25b5be0418.png#align=left&display=inline&height=317&margin=%5Bobject%20Object%5D&name=image.png&originHeight=634&originWidth=810&size=129682&status=done&style=none&width=405" alt="image.png"></p>
+<h2 id="APP-授权：如何让用户不反感并同意授权"><a href="#APP-授权：如何让用户不反感并同意授权" class="headerlink" title="APP 授权：如何让用户不反感并同意授权"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/976417.html">APP 授权：如何让用户不反感并同意授权</a></h2><blockquote>
+<p>用时 22 分钟</p>
+</blockquote>
+<ol>
+<li><p>授权</p>
+<ol>
+<li><p>授权机制</p>
+</li>
+<li><p>授权分类：1) 涉及用户隐私   2) 系统服务权限</p>
+<ul>
+<li>涉及到用户隐私的授权弹框可以添加简短的自定义向用户解释说明语句；而系统服务权限弹框不可添加说明，有系统固定提示语</li>
+</ul>
+</li>
+<li><p>常用授权：1) 网络，通知，位置。 2) 通讯录，相机，相册，麦克风等</p>
+</li>
+<li><p>授权过程中存在的问题</p>
+<ul>
+<li><p>向用户申请一些与功能关系不大的权限会导致用户的信任度低</p>
+</li>
+<li><p>获取权限后滥用，向用户发送一些无用信息、广告等</p>
+</li>
+<li><p>在向用户申请权限时，未描述清楚功能用途</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>针对授权所做的设计</p>
+<ol>
+<li><p>确定所需权限</p>
+</li>
+<li><p>针对权限设计</p>
+<ol>
+<li><p>设定系统弹框弹出时机</p>
+<ul>
+<li><p>第一次打开时申请：1）网络权限；2）通知权限；3）会影响到正常使用的权限</p>
+</li>
+<li><p>使用到相关功能时</p>
+</li>
+</ul>
+</li>
+<li><p>是否需要预授权(pre-premission) 通知和通讯录权限</p>
+</li>
+</ol>
+</li>
+<li><p>拒绝授权处理</p>
+<ol>
+<li><p>预授权被拒</p>
+</li>
+<li><p>网络授权被拒</p>
+</li>
+<li><p>系统授权被拒</p>
+</li>
+</ol>
+</li>
+<li><p>授权提示文案</p>
+<ol>
+<li><p>预授权文案</p>
+<ul>
+<li><p>解释需要权限的原因</p>
+</li>
+<li><p>如果没有权限会如何</p>
+</li>
+<li><p>打消用户的疑虑</p>
+</li>
+</ul>
+</li>
+<li><p>首次授权文案：没有权限会如何</p>
+</li>
+<li><p>被拒后提示文案：您尚未开启，请开启</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="详解-App-设计中的微妙细节"><a href="#详解-App-设计中的微妙细节" class="headerlink" title="详解 App 设计中的微妙细节"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/ucd/828439.html">详解 App 设计中的微妙细节</a></h2><ol>
+<li><p>视觉表现型问题</p>
+<ol>
+<li><p>统一的图标设计风格</p>
+</li>
+<li><p>图标大小视觉平衡</p>
+</li>
+<li><p>优化分割线</p>
+</li>
+<li><p>投影颜色与透明度</p>
+</li>
+<li><p>过度装饰，保持简洁</p>
+</li>
+<li><p>控制界面配色数量</p>
+</li>
+<li><p>合理的进行设计对比</p>
+</li>
+<li><p>提高配图的质量</p>
+</li>
+</ol>
+</li>
+<li><p>信息传达型问题</p>
+<ol>
+<li><p>明确表达图标的含义</p>
+</li>
+<li><p>正确的表达按钮属性</p>
+</li>
+<li><p>正确处理文字排版的层级关系</p>
+</li>
+<li><p>线条与色块分割的合理应用</p>
+</li>
+<li><p>提前预估信息呈现的最大值</p>
+</li>
+<li><p>运用提示符提高用户的阅读效率</p>
+</li>
+<li><p>布局层次分明，重点突出</p>
+</li>
+<li><p>信息布局符合阅读习惯</p>
+</li>
+</ol>
+</li>
+<li><p>概念表达型问题</p>
+<ol>
+<li><p>相同界面下圆角&amp;直角的统一性</p>
+</li>
+<li><p>设计元素的表达符合用户心理</p>
+</li>
+<li><p>设计表达的一致性</p>
+</li>
+<li><p>网页版和移动端的设计习惯不混淆</p>
+</li>
+<li><p>表单设计更简洁</p>
+</li>
+<li><p>空页面中插画的运用</p>
+</li>
+<li><p>运用真实的信息填充设计</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="APP-设计篇：如何让你的设计更精致？"><a href="#APP-设计篇：如何让你的设计更精致？" class="headerlink" title="APP 设计篇：如何让你的设计更精致？"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/848842.html">APP 设计篇：如何让你的设计更精致？</a></h2><ol>
+<li><p>图片</p>
+<ul>
+<li><p>图片比例</p>
+</li>
+<li><p>图片质量</p>
+</li>
+<li><p>真实还原</p>
+</li>
+</ul>
+</li>
+<li><p>文字</p>
+</li>
+<li><p>色彩</p>
+</li>
+<li><p>图标</p>
+</li>
+<li><p>留白</p>
+</li>
+</ol>
+<h2 id="网易设计师教你如何系统地优化-APP"><a href="#网易设计师教你如何系统地优化-APP" class="headerlink" title="网易设计师教你如何系统地优化 APP"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/ucd/885472.html">网易设计师教你如何系统地优化 APP</a></h2><ol>
+<li><p>寻找切入点</p>
+</li>
+<li><p>分模块优化</p>
+<ul>
+<li><p>加载模块</p>
+</li>
+<li><p>缺省模块</p>
+</li>
+<li><p>默认图模块</p>
+</li>
+<li><p>新手引导模块</p>
+</li>
+</ul>
+</li>
+<li><p>梳理模块之间的关系</p>
+</li>
+</ol>
+<h2 id="APP-网络设计相关总结"><a href="#APP-网络设计相关总结" class="headerlink" title="APP 网络设计相关总结"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/986639.html">APP 网络设计相关总结</a></h2><blockquote>
+<p>用时 13 分 46 秒</p>
+</blockquote>
+<ol>
+<li><p>网络相关设计</p>
+<ol>
+<li><p>4G 下看视频、下载</p>
+</li>
+<li><p>WIFI 看视频、下载忽然切到 4G</p>
+</li>
+<li><p>断网</p>
+</li>
+<li><p>弱网</p>
+</li>
+</ol>
+</li>
+<li><p>如何设计</p>
+<ol>
+<li><p>确定需要设计的场景</p>
+<ul>
+<li><p>很耗流量的场景（看视频、下载等）</p>
+</li>
+<li><p>断网</p>
+</li>
+</ul>
+</li>
+<li><p>提示时机</p>
+<ul>
+<li><p>场景一：在 4G 操作耗费大量流量功能的时候或者在 WI-FI 下操作耗费大量流量功能的时候</p>
+</li>
+<li><p>场景二：用户进入新页面或发送请求到服务器时</p>
+</li>
+</ul>
+</li>
+<li><p>提示用户</p>
+<ol>
+<li><p>toast</p>
+</li>
+<li><p>页面提示</p>
+</li>
+<li><p>Snackbar</p>
+</li>
+<li><p>Tips/List</p>
+</li>
+<li><p>Dialog</p>
+</li>
+<li><p>视频框内提示</p>
+</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li><p>场景一：适合 5 + 设置(如网易云)</p>
+</li>
+<li><p>场景二：<img src="https://cdn.nlark.com/yuque/0/2020/jpeg/84971/1598322215854-0f6a889b-d2cd-427c-9b8a-ba6526e870b1.jpeg#align=left&display=inline&height=1013&margin=%5Bobject%20Object%5D&name=image.jpeg&originHeight=1013&originWidth=1375&size=74772&status=done&style=none&width=1375" alt="image.jpeg"></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="1-0-版-APP-如何做全局产品设计"><a href="#1-0-版-APP-如何做全局产品设计" class="headerlink" title="1.0 版 APP 如何做全局产品设计"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/824254.html">1.0 版 APP 如何做全局产品设计</a></h2><blockquote>
+<p>用时 6 分 36 秒</p>
+</blockquote>
+<ol>
+<li><p>错误提示：局部报错使用 toast/dialog，全局报错展示错误页面</p>
+</li>
+<li><p>空页面</p>
+</li>
+<li><p>页面内刷新/加载</p>
+</li>
+<li><p>切换页面时的刷新/加载</p>
+</li>
+<li><p>弹框</p>
+</li>
+<li><p>操作面板</p>
+</li>
+<li><p>升级引导</p>
+</li>
+<li><p>其它</p>
+</li>
+</ol>
+<h2 id="案例分析：3-种用户场景对-APP-评论模块设计的影响"><a href="#案例分析：3-种用户场景对-APP-评论模块设计的影响" class="headerlink" title="案例分析：3 种用户场景对 APP 评论模块设计的影响"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/1015852.html">案例分析：3 种用户场景对 APP 评论模块设计的影响</a></h2><blockquote>
+<p>用时 5 分 23 秒</p>
+</blockquote>
+<ol>
+<li><p>动态发布场景</p>
+<ol>
+<li><p>QQ/微信：按时间顺序平铺式</p>
+</li>
+<li><p>微博：动态下方显示所有评论(按热度/时间)，点进去显示回复详情</p>
+</li>
+</ol>
+</li>
+<li><p>问答场景</p>
+<ol>
+<li>知乎：对话列表功能</li>
+</ol>
+</li>
+<li><p>新闻评论场景</p>
+<ol>
+<li>网易新闻：盖楼式设计</li>
+</ol>
+</li>
+</ol>
+<h2 id="总结：APP-走心设计的小思考"><a href="#总结：APP-走心设计的小思考" class="headerlink" title="总结：APP 走心设计的小思考"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/1096833.html">总结：APP 走心设计的小思考</a></h2><blockquote>
+<p>用时 5 分 38 秒</p>
+</blockquote>
+<ol>
+<li><p>场景化设计：优惠券、卡包、购物清单、卡片集等</p>
+</li>
+<li><p>微交互设计</p>
+</li>
+<li><p>渐变+简单曲线</p>
+</li>
+<li><p>干净的空间感</p>
+</li>
+<li><p>AR 应用</p>
+</li>
+<li><p>数据可视化</p>
+</li>
+<li><p>适当破坏</p>
+</li>
+</ol>
+<h2 id="APP-设计在-iOS-和-Android-操作系统中的差异"><a href="#APP-设计在-iOS-和-Android-操作系统中的差异" class="headerlink" title="APP 设计在 iOS 和 Android 操作系统中的差异"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/ucd/1249245.html">APP 设计在 iOS 和 Android 操作系统中的差异</a></h2><blockquote>
+<p>用时 6 分 5 秒</p>
+</blockquote>
+<ol>
+<li><p>导航模块：iOS 右滑返回，Android 点导航返回</p>
+</li>
+<li><p>APP 的内置导航</p>
+</li>
+<li><p>标准控件的自定义视图</p>
+</li>
+<li><p>按钮风格</p>
+</li>
+<li><p>底部列表/行为视图</p>
+</li>
+<li><p>热区/网格</p>
+</li>
+<li><p>字体</p>
+</li>
+<li><p>微交互</p>
+</li>
+</ol>
+<h2 id="简单易用的产品方法论：以-APP-设计为例"><a href="#简单易用的产品方法论：以-APP-设计为例" class="headerlink" title="简单易用的产品方法论：以 APP 设计为例"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/1269161.html">简单易用的产品方法论：以 APP 设计为例</a></h2><blockquote>
+<p>用时 10 分 35 秒</p>
+</blockquote>
+<p>化繁为简七原则：</p>
+<ol>
+<li><p>应用于存储于外部世界和头脑中的知识</p>
+</li>
+<li><p>简化任务的结构</p>
+</li>
+<li><p>注重可视性，消除执行阶段和评估阶段的鸿沟</p>
+</li>
+<li><p>建立正确的匹配关系</p>
+</li>
+<li><p>利用自然和人为的限制因素</p>
+</li>
+<li><p>考虑可能出现的人为差错</p>
+</li>
+<li><p>最后选择，采用标准化</p>
+</li>
+<li><p>对每个层级的选项，进行数量最少化、可辨识和可理解的检查</p>
+</li>
+<li><p>对每个内容性页面，进行重点是否突出、可辨识和可理解的检查</p>
+</li>
+<li><p>对每个功能性页面，进行重点是否突出、操作结果是否明确、操作门槛是否足够低的检查</p>
+</li>
+<li><p>对各处反馈进行检查，是否完整覆盖、是否可理解、是否告知用户如何应对</p>
+</li>
+<li><p>对 APP 的核心流程，进行操作顺畅性和反馈情况检查</p>
+</li>
+</ol>
+<h2 id="以企业-IM-为例，谈谈-To-B-和-To-C-有何不同"><a href="#以企业-IM-为例，谈谈-To-B-和-To-C-有何不同" class="headerlink" title="以企业 IM 为例，谈谈 To B 和 To C 有何不同"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pmd/396504.html">以企业 IM 为例，谈谈 To B 和 To C 有何不同</a></h2><blockquote>
+<p>用时 9 分 26 秒</p>
+</blockquote>
+<ol>
+<li><p>用户特征</p>
+<ol>
+<li><p>有组织 VS 无组织</p>
+</li>
+<li><p>岛屿形态 VS 离散网络形态</p>
+</li>
+<li><p>组织内联系为主 VS 广泛连接</p>
+</li>
+<li><p>上下级 VS 关系平等</p>
+</li>
+</ol>
+</li>
+<li><p>产品选择</p>
+<ol>
+<li><p>理性 VS 感性</p>
+</li>
+<li><p>愿为价值付出 VS 价格敏感</p>
+</li>
+<li><p>切换成本高 VS 切换成本低</p>
+</li>
+<li><p>管理层决定 VS 自己做主</p>
+</li>
+</ol>
+</li>
+<li><p>产品价值</p>
+<ol>
+<li>可管可控 VS 崇尚自由</li>
+</ol>
+</li>
+<li><p>产品平台</p>
+<ol>
+<li>PC 很重要 VS 移动为王</li>
+</ol>
+</li>
+</ol>
+<h2 id="读懂-To-B-行业产品经理：产品的打磨只是冰山的一角，更重要的是做服务"><a href="#读懂-To-B-行业产品经理：产品的打磨只是冰山的一角，更重要的是做服务" class="headerlink" title="读懂 To B 行业产品经理：产品的打磨只是冰山的一角，更重要的是做服务"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/kol/435622.html">读懂 To B 行业产品经理：产品的打磨只是冰山的一角，更重要的是做服务</a></h2><blockquote>
+<p>用时 29 分 13 秒</p>
+</blockquote>
+<ol>
+<li><p>区别：To B 注重对企业价值的传递，To C 是向终端消费者提供服务或价值</p>
+</li>
+<li><p>发展</p>
+<ol>
+<li><p>服务/产品</p>
+</li>
+<li><p>收费/免费</p>
+</li>
+<li><p>效率/体验</p>
+</li>
+<li><p>本地/云端</p>
+</li>
+<li><p>渠道/资源</p>
+</li>
+<li><p>垂直/通用</p>
+</li>
+<li><p>决策/角色</p>
+</li>
+<li><p>数据/业务</p>
+</li>
+<li><p>ISV/平台</p>
+</li>
+</ol>
+</li>
+<li><p>To B 产品经理</p>
+<ol>
+<li><p>服务设计的产品理念</p>
+</li>
+<li><p>对称交叉的产品技能</p>
+</li>
+<li><p>结构系统的产品思路</p>
+</li>
+<li><p>To B 产品面临着 6 大山</p>
+<ul>
+<li><p>资金</p>
+</li>
+<li><p>人才</p>
+</li>
+<li><p>销售</p>
+</li>
+<li><p>管理</p>
+</li>
+<li><p>沟通</p>
+</li>
+<li><p>协作</p>
+</li>
+</ul>
+</li>
+<li><p>完整的产品布局</p>
+</li>
+<li><p>商业层面的资源整合</p>
+</li>
+<li><p>To B 产品的 KPI</p>
+</li>
+<li><p>及时深入的产品自省</p>
+<ul>
+<li><p>产品最擅长解决哪些方面的问题</p>
+</li>
+<li><p>目标企业在此方面有何难解问题</p>
+</li>
+<li><p>企业通常如何解决问题</p>
+</li>
+<li><p>产品通常如何解决问题</p>
+</li>
+<li><p>举实际例子佐证观点</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="产品价值观：to-B-系统设计的核心思想"><a href="#产品价值观：to-B-系统设计的核心思想" class="headerlink" title="产品价值观：to B 系统设计的核心思想"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/450394.html">产品价值观：to B 系统设计的核心思想</a></h2><blockquote>
+<p>用时 7 分 43 秒</p>
+</blockquote>
+<ol>
+<li><p>产品定位</p>
+</li>
+<li><p>核心任务</p>
+</li>
+<li><p>善恶观</p>
+</li>
+</ol>
+<h2 id="To-B-运营和-To-C-运营到底有什么区别？"><a href="#To-B-运营和-To-C-运营到底有什么区别？" class="headerlink" title="To B 运营和 To C 运营到底有什么区别？"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/operate/494211.html">To B 运营和 To C 运营到底有什么区别？</a></h2><blockquote>
+<p>用时 4 分 52 秒</p>
+</blockquote>
+<p>本质：从目标用户转化为付费用户实现的变现<br>To B 承担了市场、销售、公共服务等环节<br>To C 承担了研发、营销、体验等环节</p>
+<h2 id="从-C-端到-B-端，该如何转变以实现运营"><a href="#从-C-端到-B-端，该如何转变以实现运营" class="headerlink" title="从 C 端到 B 端，该如何转变以实现运营"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/operate/573915.html">从 C 端到 B 端，该如何转变以实现运营</a></h2><blockquote>
+<p>用时 9 分</p>
+</blockquote>
+<ol>
+<li><p>目标用户</p>
+</li>
+<li><p>运营目的：结果导向、用户至上、效率优先</p>
+</li>
+<li><p>运营手段</p>
+<ol>
+<li><p>B 端企业采购的运营</p>
+</li>
+<li><p>C 端使用员工的运营</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="三大方面，分析-To-B-和-To-C-产品的区别"><a href="#三大方面，分析-To-B-和-To-C-产品的区别" class="headerlink" title="三大方面，分析 To B 和 To C 产品的区别"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/576871.html">三大方面，分析 To B 和 To C 产品的区别</a></h2><blockquote>
+<p>用时 5 分 29 秒</p>
+</blockquote>
+<ol>
+<li><p>客户与用户</p>
+<ol>
+<li><p>理性/感性</p>
+</li>
+<li><p>ROI/开心就好</p>
+</li>
+</ol>
+</li>
+<li><p>工具与玩具</p>
+</li>
+<li><p>卖艺与卖身</p>
+</li>
+</ol>
+<h2 id="To-B-产品的设计思考"><a href="#To-B-产品的设计思考" class="headerlink" title="To B 产品的设计思考"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/577965.html">To B 产品的设计思考</a></h2><blockquote>
+<p>用时 6 分 31 秒</p>
+</blockquote>
+<ol>
+<li><p>产品定位</p>
+</li>
+<li><p>商业模式：电子商务、SaaS、免费移动应用、媒体网站、用户生成内容、双边市场</p>
+</li>
+<li><p>产品阶段：MVP、增长、变现</p>
+</li>
+</ol>
+<h2 id="产品方法论：B-端产品需求梳理分析模型"><a href="#产品方法论：B-端产品需求梳理分析模型" class="headerlink" title="产品方法论：B 端产品需求梳理分析模型"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pmd/582416.html">产品方法论：B 端产品需求梳理分析模型</a></h2><blockquote>
+<p>用时 7 分 45 秒</p>
+</blockquote>
+<ol>
+<li><p>需求梳理</p>
+</li>
+<li><p>确定系统信息流、相关主体</p>
+</li>
+<li><p>项目范围：需求边界、行业边界、系统边界</p>
+</li>
+</ol>
+<h2 id="作为-To-B-产品经理，如何梳理完全陌生的业务需求？"><a href="#作为-To-B-产品经理，如何梳理完全陌生的业务需求？" class="headerlink" title="作为 To B 产品经理，如何梳理完全陌生的业务需求？"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pmd/590970.html">作为 To B 产品经理，如何梳理完全陌生的业务需求？</a></h2><blockquote>
+<p>用时 17 分 55 秒</p>
+</blockquote>
+<ol>
+<li><p>未见客户前，充分做好对方的背景调研</p>
+<ul>
+<li><p>仔细分析真实需求</p>
+</li>
+<li><p>圈定需当面重点交流的问题</p>
+</li>
+<li><p>事先在网上搜集相关资料</p>
+</li>
+</ul>
+</li>
+<li><p>约见客户中，务必达成输出双方共识的文档</p>
+<ul>
+<li><p>沟通后输出带有流程图的「会议纪要」</p>
+</li>
+<li><p>沟通时务必深化上次会议的讨论内容</p>
+</li>
+</ul>
+</li>
+<li><p>梳理完成后输出高质量的文档，重点标注本次产品设计的要点</p>
+<ul>
+<li><p>明确对方的业务目标和自己公司的商业目标</p>
+</li>
+<li><p>数次会议后达成的共识（本次产品设计中涉及/不涉及的功能点）</p>
+</li>
+<li><p>对方参与的用户角色（需要考虑相应的角色划分）</p>
+</li>
+<li><p>业务主流程（关键部分子流程）</p>
+</li>
+<li><p>本次产品预计设计的功能点及其包含的功能</p>
+</li>
+<li><p>需要对方协助的一部分工作（辅助材料、相关的人力/物力/宣传）</p>
+</li>
+</ul>
+</li>
+<li><p>系统化思考，从全局审视产品，减少开发量</p>
+</li>
+<li><p>及时更新需求文档</p>
+</li>
+</ol>
+<h2 id="To-B-的运营对象是企业，To-C-的运营对象是普通用户，是这样吗？"><a href="#To-B-的运营对象是企业，To-C-的运营对象是普通用户，是这样吗？" class="headerlink" title="To B 的运营对象是企业，To C 的运营对象是普通用户，是这样吗？"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/operate/592294.html">To B 的运营对象是企业，To C 的运营对象是普通用户，是这样吗？</a></h2><blockquote>
+<p>用时 11 分 6 秒</p>
+</blockquote>
+<ol>
+<li>不能片面地定义 To B 运营</li>
+<li>对于 To B 用户，产品价值是什么？</li>
+<li>To B 产品的“使用或购买”的决策单位</li>
+<li>用户更加注重产品的专业形象</li>
+</ol>
+<h2 id="如何让一个-SaaS-软件产品在-90-天内增加-3000-万美金收益"><a href="#如何让一个-SaaS-软件产品在-90-天内增加-3000-万美金收益" class="headerlink" title="如何让一个 SaaS 软件产品在 90 天内增加 3000 万美金收益"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/it/604785.html">如何让一个 SaaS 软件产品在 90 天内增加 3000 万美金收益</a></h2><blockquote>
+<p>用时 15 分 31 秒</p>
+</blockquote>
+<p>从以获取新用户为导向的增长方式向以留存老客户为导向的增长方式的转变</p>
+<ol>
+<li><p>减少客户流失(Reduce Customer Churn)</p>
+<ol>
+<li><p>建立已流失客户找回计划</p>
+<ul>
+<li><p>利用销售或客户成功定期与客户沟通</p>
+</li>
+<li><p>基于用户行为的自动邮件/短信/App 推送流失用户找回计划</p>
+</li>
+<li><p>针对流失用户的定向展现广告</p>
+</li>
+</ul>
+</li>
+<li><p>建立流失用户预警机制</p>
+</li>
+<li><p>改建产品</p>
+</li>
+</ol>
+</li>
+<li><p>增加平均客户收益(Increasing Average Revenue Per User, ARRU)</p>
+<ol>
+<li><p>调整价格策略</p>
+</li>
+<li><p>Cross-Sale 与 Up-sell</p>
+</li>
+</ol>
+</li>
+<li><p>增加客户总量(Increasing the Total Number of Customers)</p>
+<ol>
+<li><p>定期制定和分享增长计划</p>
+</li>
+<li><p>提升各个流程的转化率</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="实践提炼：面对-B-端大型项目，产品设计应该如何展开？"><a href="#实践提炼：面对-B-端大型项目，产品设计应该如何展开？" class="headerlink" title="实践提炼：面对 B 端大型项目，产品设计应该如何展开？"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/624623.html">实践提炼：面对 B 端大型项目，产品设计应该如何展开？</a></h2><blockquote>
+<p>用时 7 分 41 秒</p>
+</blockquote>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/jpeg/84971/1598323272041-caad645f-0c21-44f7-b415-9589f0b48cbc.jpeg#align=left&display=inline&height=1873&margin=%5Bobject%20Object%5D&name=image.jpeg&originHeight=1873&originWidth=3000&size=254023&status=done&style=none&width=3000" alt="image.jpeg"></p>
+<ol>
+<li><p>项目背景：了解各方改版动机及期望</p>
+</li>
+<li><p>需求调研：不同角色有不同需求</p>
+</li>
+<li><p>设计输出：以设计目标为导向的解构-重构</p>
+</li>
+<li><p>原型测试：让数据说话</p>
+</li>
+</ol>
+<h2 id="以-B-端产品为例，谈谈如何围绕产品目标去解决用户问题"><a href="#以-B-端产品为例，谈谈如何围绕产品目标去解决用户问题" class="headerlink" title="以 B 端产品为例，谈谈如何围绕产品目标去解决用户问题"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pmd/629932.html">以 B 端产品为例，谈谈如何围绕产品目标去解决用户问题</a></h2><blockquote>
+<p>用时 3 分 48 秒</p>
+</blockquote>
+<ol>
+<li><p>了解</p>
+</li>
+<li><p>入驻</p>
+</li>
+<li><p>初次登录</p>
+</li>
+<li><p>选购产品</p>
+</li>
+</ol>
+<h2 id="泥沼中摸爬滚打：我总结的-To-B-用户运营的-6-点套路"><a href="#泥沼中摸爬滚打：我总结的-To-B-用户运营的-6-点套路" class="headerlink" title="泥沼中摸爬滚打：我总结的 To B 用户运营的 6 点套路"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/operate/650335.html">泥沼中摸爬滚打：我总结的 To B 用户运营的 6 点套路</a></h2><blockquote>
+<p>用时 9 分 16 秒</p>
+</blockquote>
+<ol>
+<li><p>用户沟通，让他们感受到尊重和爽</p>
+</li>
+<li><p>用专业的知识，说服用户</p>
+</li>
+<li><p>及时响应和反馈</p>
+</li>
+<li><p>用户要求的不一定要做</p>
+</li>
+<li><p>关注 20%的核心价值用户</p>
+</li>
+<li><p>数据驱动运营</p>
+</li>
+</ol>
+<h2 id="上线前，一款-To-B-产品要做哪些运营动作？"><a href="#上线前，一款-To-B-产品要做哪些运营动作？" class="headerlink" title="上线前，一款 To B 产品要做哪些运营动作？"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/operate/675863.html">上线前，一款 To B 产品要做哪些运营动作？</a></h2><blockquote>
+<p>用时 7 分 20 秒</p>
+</blockquote>
+<ol>
+<li>产品与用户决策<ol>
+<li>竞品分析</li>
+<li>产品经理</li>
+<li>原型图</li>
+<li>产品测试</li>
+<li>总结分析</li>
+<li>购买决策</li>
+</ol>
+</li>
+<li>企业需求分析</li>
+<li>确定推广主题与渠道<ol>
+<li>主题紧扣需求</li>
+<li>渠道触及目标</li>
+</ol>
+</li>
+<li>上线前的内容建设</li>
+<li>客服的准备工作</li>
+<li>其他</li>
+</ol>
+<h2 id="To-B-产品第一原理性的思考"><a href="#To-B-产品第一原理性的思考" class="headerlink" title="To B 产品第一原理性的思考"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pmd/713002.html">To B 产品第一原理性的思考</a></h2><blockquote>
+<p>用时 11 分 13 秒</p>
+</blockquote>
+<p>第一原理性：递弱代偿原理、资源稀缺性假设 =&gt; 提升效率</p>
+<ol>
+<li><p>用户视角：拿到一手需求，关注用户使用，实际产品体验</p>
+</li>
+<li><p>逆向思维</p>
+</li>
+<li><p>全盘考虑</p>
+</li>
+</ol>
+<h2 id="通过一个例子，来聊聊-To-B-的后端产品重构"><a href="#通过一个例子，来聊聊-To-B-的后端产品重构" class="headerlink" title="通过一个例子，来聊聊 To B 的后端产品重构"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/729308.html">通过一个例子，来聊聊 To B 的后端产品重构</a></h2><blockquote>
+<p>用时 7 分 14 秒</p>
+</blockquote>
+<ol>
+<li><p>确定产品重构目的</p>
+</li>
+<li><p>产品重构的流程</p>
+</li>
+<li><p>重构效果评估</p>
+</li>
+</ol>
+<h2 id="QQ-音视频年轻化之路"><a href="#QQ-音视频年轻化之路" class="headerlink" title="QQ 音视频年轻化之路"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/kol/141058.html">QQ 音视频年轻化之路</a></h2><blockquote>
+<p>用时 4 分 31 秒</p>
+</blockquote>
+<ol>
+<li><p>向移动端转型</p>
+</li>
+<li><p>QQ 要年轻化</p>
+</li>
+<li><p>QQ 需要改变</p>
+</li>
+</ol>
+<h2 id="从-3-个分类出发，深入研究-App-加载动画"><a href="#从-3-个分类出发，深入研究-App-加载动画" class="headerlink" title="从 3 个分类出发，深入研究 App 加载动画"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/pd/814242.html">从 3 个分类出发，深入研究 App 加载动画</a></h2><ol>
+<li><p>按场景分类</p>
+<ol>
+<li><p>下拉刷新</p>
+</li>
+<li><p>上拉加载</p>
+</li>
+<li><p>图片视频加载</p>
+</li>
+<li><p>提交表单（登录注册）</p>
+</li>
+<li><p>跳转新页面（初始加载）</p>
+</li>
+<li><p>启动页</p>
+</li>
+</ol>
+</li>
+<li><p>按性能分类</p>
+<ol>
+<li><p>预加载</p>
+</li>
+<li><p>同级加载</p>
+</li>
+<li><p>离线加载</p>
+</li>
+<li><p>异步加载</p>
+</li>
+<li><p>优先加载</p>
+</li>
+<li><p>框架加载</p>
+</li>
+<li><p>智能加载</p>
+</li>
+</ol>
+</li>
+<li><p>按样式分类</p>
+<ol>
+<li><p>toast 加载</p>
+</li>
+<li><p>导航栏 loading</p>
+</li>
+<li><p>控件加载</p>
+</li>
+<li><p>启动页加载</p>
+</li>
+<li><p>顶部进度条加载</p>
+</li>
+<li><p>白屏加载/全屏加载</p>
+</li>
+<li><p>状态栏加载</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>总结</p>
+<ol>
+<li><p>刷新最好有加载结果提示</p>
+</li>
+<li><p>如果加载失败，应给用户提示</p>
+</li>
+<li><p>尽量使用非模态的加载方式</p>
+</li>
+<li><p>使用模态方式，提供取消选项</p>
+</li>
+<li><p>情趣化设计加载动画</p>
+</li>
+</ol>
+<h2 id="对齐在-APP-中不易被察觉的-3-点"><a href="#对齐在-APP-中不易被察觉的-3-点" class="headerlink" title="对齐在 APP 中不易被察觉的 3 点"></a><a target="_blank" rel="noopener" href="http://www.woshipm.com/ucd/963331.html">对齐在 APP 中不易被察觉的 3 点</a></h2><ol>
+<li><p>除了文字、图片等一些基本成组的元素需要对齐外，在宏观上，布局对齐对整体界面的影响也是尤为重要的，其背后起到暗示用户不同布局的不同含义。</p>
+</li>
+<li><p>一昧的在界面中统一对齐是不可取的，需要将重要的地方凸显出来。</p>
+</li>
+<li><p>不盲目跟风设计，对齐除了考虑到视觉，更应该考虑到是否便于用户操作。</p>
+</li>
+</ol>
+<h2 id="其他文章"><a href="#其他文章" class="headerlink" title="其他文章"></a>其他文章</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/29/yuque/%E6%97%A9%E6%97%A9%E8%81%8A%2014%20%E6%9C%9F%20%E6%88%90%E9%95%BF%E4%B8%8E%E6%99%8B%E5%8D%87/" rel="prev" title="早早聊 14 期 成长与晋升">
+      <i class="fa fa-chevron-left"></i> 早早聊 14 期 成长与晋升
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/24/yuque/%E7%BD%91%E9%A1%B5%E6%94%B6%E8%97%8F/" rel="next" title="网页收藏">
+      网页收藏 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#APP-%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E8%B6%8B%E5%90%8C%E5%8C%96%EF%BC%9A%E8%BF%91%E6%9C%9F%E7%9C%8B%E6%9D%A5%E6%98%AF%E6%9C%89%E7%9B%8A%E7%9A%84"><span class="nav-number">1.</span> <span class="nav-text">APP 界面设计中的趋同化：近期看来是有益的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#APP-%E8%AE%BE%E8%AE%A1%EF%BC%9A%E9%82%A3%E4%BA%9B%E6%89%93%E5%8A%A8%E4%BA%BA%E5%BF%83%E7%9A%84%E8%AE%BE%E8%AE%A1%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">APP 设计：那些打动人心的设计点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84-APP-%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">特殊情况下的 APP 设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E9%A1%B5%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.1.</span> <span class="nav-text">注册登录页设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%B5%E9%9D%A2%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.2.</span> <span class="nav-text">启动页面设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loading-%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.3.</span> <span class="nav-text">loading 设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%85%E6%9E%90-APP-%E8%AE%BE%E8%AE%A1%EF%BC%9A%E6%8E%8C%E6%8F%A1%E5%B8%82%E5%9C%BA%E6%88%AA%E5%9B%BE%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="nav-number">4.</span> <span class="nav-text">浅析 APP 设计：掌握市场截图设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#APP-%E5%AF%BC%E8%88%AA%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%B8%83%E5%B1%80%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">APP 导航设计模式与信息布局设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#APP-%E6%8E%88%E6%9D%83%EF%BC%9A%E5%A6%82%E4%BD%95%E8%AE%A9%E7%94%A8%E6%88%B7%E4%B8%8D%E5%8F%8D%E6%84%9F%E5%B9%B6%E5%90%8C%E6%84%8F%E6%8E%88%E6%9D%83"><span class="nav-number">6.</span> <span class="nav-text">APP 授权：如何让用户不反感并同意授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A6%E8%A7%A3-App-%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%BE%AE%E5%A6%99%E7%BB%86%E8%8A%82"><span class="nav-number">7.</span> <span class="nav-text">详解 App 设计中的微妙细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#APP-%E8%AE%BE%E8%AE%A1%E7%AF%87%EF%BC%9A%E5%A6%82%E4%BD%95%E8%AE%A9%E4%BD%A0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%9B%B4%E7%B2%BE%E8%87%B4%EF%BC%9F"><span class="nav-number">8.</span> <span class="nav-text">APP 设计篇：如何让你的设计更精致？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E6%98%93%E8%AE%BE%E8%AE%A1%E5%B8%88%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E7%B3%BB%E7%BB%9F%E5%9C%B0%E4%BC%98%E5%8C%96-APP"><span class="nav-number">9.</span> <span class="nav-text">网易设计师教你如何系统地优化 APP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#APP-%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93"><span class="nav-number">10.</span> <span class="nav-text">APP 网络设计相关总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-0-%E7%89%88-APP-%E5%A6%82%E4%BD%95%E5%81%9A%E5%85%A8%E5%B1%80%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1"><span class="nav-number">11.</span> <span class="nav-text">1.0 版 APP 如何做全局产品设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90%EF%BC%9A3-%E7%A7%8D%E7%94%A8%E6%88%B7%E5%9C%BA%E6%99%AF%E5%AF%B9-APP-%E8%AF%84%E8%AE%BA%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">12.</span> <span class="nav-text">案例分析：3 种用户场景对 APP 评论模块设计的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9AAPP-%E8%B5%B0%E5%BF%83%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%B0%8F%E6%80%9D%E8%80%83"><span class="nav-number">13.</span> <span class="nav-text">总结：APP 走心设计的小思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#APP-%E8%AE%BE%E8%AE%A1%E5%9C%A8-iOS-%E5%92%8C-Android-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="nav-number">14.</span> <span class="nav-text">APP 设计在 iOS 和 Android 操作系统中的差异</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%98%93%E7%94%A8%E7%9A%84%E4%BA%A7%E5%93%81%E6%96%B9%E6%B3%95%E8%AE%BA%EF%BC%9A%E4%BB%A5-APP-%E8%AE%BE%E8%AE%A1%E4%B8%BA%E4%BE%8B"><span class="nav-number">15.</span> <span class="nav-text">简单易用的产品方法论：以 APP 设计为例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E4%BC%81%E4%B8%9A-IM-%E4%B8%BA%E4%BE%8B%EF%BC%8C%E8%B0%88%E8%B0%88-To-B-%E5%92%8C-To-C-%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C"><span class="nav-number">16.</span> <span class="nav-text">以企业 IM 为例，谈谈 To B 和 To C 有何不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E6%87%82-To-B-%E8%A1%8C%E4%B8%9A%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%EF%BC%9A%E4%BA%A7%E5%93%81%E7%9A%84%E6%89%93%E7%A3%A8%E5%8F%AA%E6%98%AF%E5%86%B0%E5%B1%B1%E7%9A%84%E4%B8%80%E8%A7%92%EF%BC%8C%E6%9B%B4%E9%87%8D%E8%A6%81%E7%9A%84%E6%98%AF%E5%81%9A%E6%9C%8D%E5%8A%A1"><span class="nav-number">17.</span> <span class="nav-text">读懂 To B 行业产品经理：产品的打磨只是冰山的一角，更重要的是做服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A7%E5%93%81%E4%BB%B7%E5%80%BC%E8%A7%82%EF%BC%9Ato-B-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">18.</span> <span class="nav-text">产品价值观：to B 系统设计的核心思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#To-B-%E8%BF%90%E8%90%A5%E5%92%8C-To-C-%E8%BF%90%E8%90%A5%E5%88%B0%E5%BA%95%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">19.</span> <span class="nav-text">To B 运营和 To C 运营到底有什么区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E-C-%E7%AB%AF%E5%88%B0-B-%E7%AB%AF%EF%BC%8C%E8%AF%A5%E5%A6%82%E4%BD%95%E8%BD%AC%E5%8F%98%E4%BB%A5%E5%AE%9E%E7%8E%B0%E8%BF%90%E8%90%A5"><span class="nav-number">20.</span> <span class="nav-text">从 C 端到 B 端，该如何转变以实现运营</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E5%A4%A7%E6%96%B9%E9%9D%A2%EF%BC%8C%E5%88%86%E6%9E%90-To-B-%E5%92%8C-To-C-%E4%BA%A7%E5%93%81%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">21.</span> <span class="nav-text">三大方面，分析 To B 和 To C 产品的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#To-B-%E4%BA%A7%E5%93%81%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83"><span class="nav-number">22.</span> <span class="nav-text">To B 产品的设计思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A7%E5%93%81%E6%96%B9%E6%B3%95%E8%AE%BA%EF%BC%9AB-%E7%AB%AF%E4%BA%A7%E5%93%81%E9%9C%80%E6%B1%82%E6%A2%B3%E7%90%86%E5%88%86%E6%9E%90%E6%A8%A1%E5%9E%8B"><span class="nav-number">23.</span> <span class="nav-text">产品方法论：B 端产品需求梳理分析模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA-To-B-%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%EF%BC%8C%E5%A6%82%E4%BD%95%E6%A2%B3%E7%90%86%E5%AE%8C%E5%85%A8%E9%99%8C%E7%94%9F%E7%9A%84%E4%B8%9A%E5%8A%A1%E9%9C%80%E6%B1%82%EF%BC%9F"><span class="nav-number">24.</span> <span class="nav-text">作为 To B 产品经理，如何梳理完全陌生的业务需求？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#To-B-%E7%9A%84%E8%BF%90%E8%90%A5%E5%AF%B9%E8%B1%A1%E6%98%AF%E4%BC%81%E4%B8%9A%EF%BC%8CTo-C-%E7%9A%84%E8%BF%90%E8%90%A5%E5%AF%B9%E8%B1%A1%E6%98%AF%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%EF%BC%8C%E6%98%AF%E8%BF%99%E6%A0%B7%E5%90%97%EF%BC%9F"><span class="nav-number">25.</span> <span class="nav-text">To B 的运营对象是企业，To C 的运营对象是普通用户，是这样吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%80%E4%B8%AA-SaaS-%E8%BD%AF%E4%BB%B6%E4%BA%A7%E5%93%81%E5%9C%A8-90-%E5%A4%A9%E5%86%85%E5%A2%9E%E5%8A%A0-3000-%E4%B8%87%E7%BE%8E%E9%87%91%E6%94%B6%E7%9B%8A"><span class="nav-number">26.</span> <span class="nav-text">如何让一个 SaaS 软件产品在 90 天内增加 3000 万美金收益</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5%E6%8F%90%E7%82%BC%EF%BC%9A%E9%9D%A2%E5%AF%B9-B-%E7%AB%AF%E5%A4%A7%E5%9E%8B%E9%A1%B9%E7%9B%AE%EF%BC%8C%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E5%B1%95%E5%BC%80%EF%BC%9F"><span class="nav-number">27.</span> <span class="nav-text">实践提炼：面对 B 端大型项目，产品设计应该如何展开？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5-B-%E7%AB%AF%E4%BA%A7%E5%93%81%E4%B8%BA%E4%BE%8B%EF%BC%8C%E8%B0%88%E8%B0%88%E5%A6%82%E4%BD%95%E5%9B%B4%E7%BB%95%E4%BA%A7%E5%93%81%E7%9B%AE%E6%A0%87%E5%8E%BB%E8%A7%A3%E5%86%B3%E7%94%A8%E6%88%B7%E9%97%AE%E9%A2%98"><span class="nav-number">28.</span> <span class="nav-text">以 B 端产品为例，谈谈如何围绕产品目标去解决用户问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A5%E6%B2%BC%E4%B8%AD%E6%91%B8%E7%88%AC%E6%BB%9A%E6%89%93%EF%BC%9A%E6%88%91%E6%80%BB%E7%BB%93%E7%9A%84-To-B-%E7%94%A8%E6%88%B7%E8%BF%90%E8%90%A5%E7%9A%84-6-%E7%82%B9%E5%A5%97%E8%B7%AF"><span class="nav-number">29.</span> <span class="nav-text">泥沼中摸爬滚打：我总结的 To B 用户运营的 6 点套路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E7%BA%BF%E5%89%8D%EF%BC%8C%E4%B8%80%E6%AC%BE-To-B-%E4%BA%A7%E5%93%81%E8%A6%81%E5%81%9A%E5%93%AA%E4%BA%9B%E8%BF%90%E8%90%A5%E5%8A%A8%E4%BD%9C%EF%BC%9F"><span class="nav-number">30.</span> <span class="nav-text">上线前，一款 To B 产品要做哪些运营动作？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#To-B-%E4%BA%A7%E5%93%81%E7%AC%AC%E4%B8%80%E5%8E%9F%E7%90%86%E6%80%A7%E7%9A%84%E6%80%9D%E8%80%83"><span class="nav-number">31.</span> <span class="nav-text">To B 产品第一原理性的思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90%EF%BC%8C%E6%9D%A5%E8%81%8A%E8%81%8A-To-B-%E7%9A%84%E5%90%8E%E7%AB%AF%E4%BA%A7%E5%93%81%E9%87%8D%E6%9E%84"><span class="nav-number">32.</span> <span class="nav-text">通过一个例子，来聊聊 To B 的后端产品重构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QQ-%E9%9F%B3%E8%A7%86%E9%A2%91%E5%B9%B4%E8%BD%BB%E5%8C%96%E4%B9%8B%E8%B7%AF"><span class="nav-number">33.</span> <span class="nav-text">QQ 音视频年轻化之路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E-3-%E4%B8%AA%E5%88%86%E7%B1%BB%E5%87%BA%E5%8F%91%EF%BC%8C%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6-App-%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB"><span class="nav-number">34.</span> <span class="nav-text">从 3 个分类出发，深入研究 App 加载动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E9%BD%90%E5%9C%A8-APP-%E4%B8%AD%E4%B8%8D%E6%98%93%E8%A2%AB%E5%AF%9F%E8%A7%89%E7%9A%84-3-%E7%82%B9"><span class="nav-number">35.</span> <span class="nav-text">对齐在 APP 中不易被察觉的 3 点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%96%87%E7%AB%A0"><span class="nav-number">36.</span> <span class="nav-text">其他文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Vanny"
+      src="/images/avatar_360.jpeg">
+  <p class="site-author-name" itemprop="name">Vanny</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/vannysi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;vannysi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i><span class="label">GitHub</span></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/diff399202@sina.cn" title="E-Mail → diff399202@sina.cn"><i class="fa fa-envelope fa-fw"></i><span class="label">E-Mail</span></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/2565903864" title="微博 → https:&#x2F;&#x2F;weibo.com&#x2F;2565903864" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i><span class="label">微博</span></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.yuque.com/ywc" title="语雀 → https:&#x2F;&#x2F;www.yuque.com&#x2F;ywc" rel="noopener" target="_blank"><i class="fa fa-link fa-fw"></i><span class="label">语雀</span></a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanny</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
