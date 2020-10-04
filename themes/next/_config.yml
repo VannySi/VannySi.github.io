@@ -114,13 +114,14 @@ darkmode: false
 # Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.
 # When running the site in a subdirectory (e.g. yoursite.com/blog), remove the leading slash from link value (/archives -> archives).
 # External url should start with http:// or https://
+# TODO: about, tags, categories, schedule
 menu:
   home: / || fa fa-home
-  about: /about/ || fa fa-user
-  tags: /tags/ || fa fa-tags
-  categories: /categories/ || fa fa-th
+  # categories: /categories/ || fa fa-th
+  # tags: /tags/ || fa fa-tags
   archives: /archives/ || fa fa-archive
-  schedule: /schedule/ || fa fa-calendar
+  # about: /about/ || fa fa-user
+  # schedule: /schedule/ || fa fa-calendar
   # sitemap: /sitemap.xml || fa fa-sitemap
   # commonweal: /404/ || fa fa-heartbeat
 
@@ -177,8 +178,8 @@ site_state: true
 social:
   GitHub: https://github.com/vannysi || fab fa-github
   E-Mail: diff399202@sina.cn || fa fa-envelope
-  Weibo: https://weibo.com/2565903864 || fab fa-weibo
-  Yuque: https://www.yuque.com/ywc || fa fa-link
+  微博: https://weibo.com/2565903864 || fab fa-weibo
+  语雀: https://www.yuque.com/ywc || fa fa-link
   #Google: https://plus.google.com/yourname || fab fa-google
   #Twitter: https://twitter.com/yourname || fab fa-twitter
   #FB Page: https://www.facebook.com/yourname || fab fa-facebook
