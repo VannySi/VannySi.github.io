@@ -1,5 +1,6 @@
 public
 node_modules
+themes/next/source/lib
 
 .DS_Store
 Thumbs.db
