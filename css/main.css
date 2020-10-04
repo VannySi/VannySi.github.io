@@ -1241,7 +1241,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #a75965;
+  background: #813dff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2470,6 +2470,11 @@ ul.breadcrumb li + li:last-child {
 .links-of-author-item span.exturl:hover {
   background: var(--body-bg-color);
   border-radius: 4px;
+}
+.links-of-author-item span.label {
+  display: inline-block;
+  min-width: 42px;
+  text-align: left;
 }
 .links-of-author-item .fa,
 .links-of-author-item .fab,
