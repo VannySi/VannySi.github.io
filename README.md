@@ -1,10 +1,10 @@
 # VannySi
 
 ## 运行
+
 ```
-// 安装ruby
-
-gem install jekyll // 未安装jekyll
-
-jekyll serve
+// 删除git 缓存
+git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
 ```
