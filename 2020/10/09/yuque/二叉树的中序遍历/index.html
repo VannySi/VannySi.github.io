@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vannysi.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Leetcode 算法题 #92  背景二叉树的中序遍历：按照左子树 -&gt; 根节点 -&gt; 右子树的顺序遍历，在访问子树时也按照此顺序遍历，直到遍历完整棵树。 12345678910111213&#x2F;** * Definition for a binary tree node. * class TreeNode &amp;#123; *     val: number *     left: Tr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉树的中序遍历">
+<meta property="og:url" content="https://vannysi.github.io/2020/10/09/yuque/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/index.html">
+<meta property="og:site_name" content="Vanny&#39;s blog">
+<meta property="og:description" content="Leetcode 算法题 #92  背景二叉树的中序遍历：按照左子树 -&gt; 根节点 -&gt; 右子树的顺序遍历，在访问子树时也按照此顺序遍历，直到遍历完整棵树。 12345678910111213&#x2F;** * Definition for a binary tree node. * class TreeNode &amp;#123; *     val: number *     left: Tr">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-09T05:50:52.000Z">
+<meta property="article:modified_time" content="2020-10-12T07:22:20.437Z">
+<meta property="article:author" content="Vanny">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vannysi.github.io/2020/10/09/yuque/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>二叉树的中序遍历 | Vanny's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="referrer" content="no-referrer" />
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vanny's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">15</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vannysi.github.io/2020/10/09/yuque/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar_360.jpeg">
+      <meta itemprop="name" content="Vanny">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vanny's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          二叉树的中序遍历
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-09 05:50:52" itemprop="dateCreated datePublished" datetime="2020-10-09T05:50:52+00:00">2020-10-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">Leetcode 算法题 #92</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>二叉树的中序遍历：按照左子树 -&gt; 根节点 -&gt; 右子树的顺序遍历，在访问子树时也按照此顺序遍历，直到遍历完整棵树。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     val: number</span></span><br><span class="line"><span class="comment"> *     left: TreeNode | null</span></span><br><span class="line"><span class="comment"> *     right: TreeNode | null</span></span><br><span class="line"><span class="comment"> *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) &#123;</span></span><br><span class="line"><span class="comment"> *         this.val = (val===undefined ? 0 : val)</span></span><br><span class="line"><span class="comment"> *         this.left = (left===undefined ? null : left)</span></span><br><span class="line"><span class="comment"> *         this.right = (right===undefined ? null : right)</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="法一：栈-标记"><a href="#法一：栈-标记" class="headerlink" title="法一：栈 + 标记"></a>法一：栈 + 标记</h2><p>思路类似于<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/solution/yan-se-biao-ji-fa-yi-chong-tong-yong-qie-jian-ming/">颜色标记法-一种通用且简明的树遍历方法</a>，我只是将已遍历过的节点左右子树剪掉，认为是已标记。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>因为中序遍历输出的顺序为前、中、后，则可以按照后、中、前的顺序压栈，如果还有子树就继续压栈。</p>
+<ol>
+<li>如果该节点有右子树则将右子树压栈；</li>
+<li>将该节点减去左右子树压栈；</li>
+<li>如果该节点有左子树则将左子树压栈；</li>
+<li>如果该节点无左右子树则输出，直到栈为空。</li>
+</ol>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inorderTraversal</span>(<span class="params">root: TreeNode | <span class="literal">null</span></span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!root) <span class="keyword">return</span> [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> list: <span class="built_in">number</span>[] = [];</span><br><span class="line">  <span class="keyword">const</span> stack: TreeNode[] = [root]; <span class="comment">// 栈</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (stack.length) &#123;</span><br><span class="line">    <span class="keyword">const</span> node = stack.pop();</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!node.right &amp;&amp; !node.left) list.push(node.val);</span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (node.right) stack.push(node.right);</span><br><span class="line">        stack.push(<span class="keyword">new</span> TreeNode(node.val));</span><br><span class="line">        <span class="keyword">if</span> (node.left) stack.push(node.left);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><ul>
+<li>时间：O(n)。其中  n  为二叉树节点的个数。二叉树的遍历中每个节点最多会被访问两次。</li>
+<li>空间：O(n)。空间复杂度取决于栈深度，而栈深度在二叉树为一条链的情况下会达到  O(n) 的级别。</li>
+</ul>
+<h2 id="法二：递归"><a href="#法二：递归" class="headerlink" title="法二：递归"></a>法二：递归</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>定义 <code>inorder(node)</code> 表示当前遍历到 node 节点的答案，那么按照中序遍历的定义，我们只需要递归调用 <code>inorder(node.left)</code>、<code>inorder(node.right)</code> 来遍历子树，在遍历中将 node 节点的值加入答案，直到碰到空子树。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> inorderTraversal = <span class="function"><span class="keyword">function</span> (<span class="params">root: TreeNode | <span class="literal">null</span></span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> nums: <span class="built_in">number</span>[] = [];</span><br><span class="line">  <span class="keyword">const</span> inorder = <span class="function">(<span class="params">node: TreeNode | <span class="literal">null</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!node) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    inorder(node.left);</span><br><span class="line">    nums.push(node.val);</span><br><span class="line">    inorder(node.right);</span><br><span class="line">  &#125;;</span><br><span class="line">  inorder(root);</span><br><span class="line">  <span class="keyword">return</span> nums;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="复杂度-1"><a href="#复杂度-1" class="headerlink" title="复杂度"></a>复杂度</h3><ul>
+<li>时间：O(n)。其中  n  为二叉树节点的个数。二叉树的遍历中每个节点会被访问一次且只会被访问一次。</li>
+<li>空间：O(n)。空间复杂度取决于递归的栈深度，而栈深度在二叉树为一条链的情况下会达到  O(n) 的级别。</li>
+</ul>
+<h2 id="法三：栈"><a href="#法三：栈" class="headerlink" title="法三：栈"></a>法三：栈</h2><p>方法二的栈实现</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> inorderTraversal = <span class="function"><span class="keyword">function</span> (<span class="params">root: TreeNode | <span class="literal">null</span></span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> nums = [];</span><br><span class="line">  <span class="keyword">const</span> stk: TreeNode[] = [];</span><br><span class="line">  <span class="keyword">let</span> node: TreeNode | <span class="literal">null</span> = root;</span><br><span class="line">  <span class="keyword">while</span> (node || stk.length) &#123;</span><br><span class="line">    <span class="keyword">while</span> (node &amp;&amp; node.left) &#123;</span><br><span class="line">      stk.push(node);</span><br><span class="line">      node = node.left;</span><br><span class="line">    &#125;</span><br><span class="line">    node = node || stk.pop() || <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line">      nums.push(node.val);</span><br><span class="line">      node = node.right;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> nums;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="复杂度-2"><a href="#复杂度-2" class="headerlink" title="复杂度"></a>复杂度</h3><ul>
+<li>时间：O(n)。其中  n  为二叉树节点的个数。二叉树的遍历中每个节点会被访问一次且只会被访问一次。</li>
+<li>空间：O(n)。空间复杂度取决于栈深度，而栈深度在二叉树为一条链的情况下会达到  O(n) 的级别。</li>
+</ul>
+<h2 id="法四：Morries-中序遍历"><a href="#法四：Morries-中序遍历" class="headerlink" title="法四：Morries 中序遍历"></a>法四：Morries 中序遍历</h2><h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>第一次没看懂，建议结合官方图示理解。</p>
+</blockquote>
+<p>假设当前节点为 n：</p>
+<ol>
+<li>如果 n 无左子树，则将 n 的值加入答案数组，再访问 n 的右子树 <code>n = n.right</code>；</li>
+<li>如果 n 有左子树，则找到 n 左子树上最右节点（即左子树中序遍历的最后一个节点，n 在中序遍历中的前驱节点），我们记为 predecessor。根据 predecessor 的右孩子是否为空进行如下操作：<ul>
+<li>如果 predecessor 的右子树为空则将其右子树指向 n，然后访问 n 的左子树 <code>n = n.left</code>；</li>
+<li>如果 predecessor 的右子树不为空则将其右子树指向 n，说明我们已经遍历完 n 的左子树，我们将 predecessor 的右子树置空，将 n 的值加入答案数组，然后访问 n 的右子树 <code>n = n.right</code>;</li>
+</ul>
+</li>
+<li>重复上述操作直至访问完整棵树。</li>
+</ol>
+<p>其实整个过程我们就多做一步：假设当前遍历到的节点为 n，将 n 的左子树中最右边的节点的右子树指向 n，这样在左子树遍历完成后我们通过这个指向走回了 n，且能通过这个指向知晓我们已经遍历完成了左子树，而不用再通过栈来维护，省去了栈的空间复杂度。</p>
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> inorderTraversal = <span class="function"><span class="keyword">function</span> (<span class="params">root: TreeNode | <span class="literal">null</span></span>): <span class="title">number</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> nums: <span class="built_in">number</span>[] = [];</span><br><span class="line">  <span class="keyword">let</span> node = root;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (node) &#123;</span><br><span class="line">    <span class="comment">// 1 如果无左子树</span></span><br><span class="line">    <span class="keyword">if</span> (!node.left) &#123;</span><br><span class="line">      <span class="comment">// 将 node 的值加入答案数组</span></span><br><span class="line">      nums.push(node.val);</span><br><span class="line">      <span class="comment">// 访问 node 的右子树</span></span><br><span class="line">      node = node.right;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 2 如果有左子树</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// predecessor 节点就是当前 node 节点向左走一步，然后一直向右走至无法走为止</span></span><br><span class="line">      <span class="keyword">let</span> predecessor = node.left;</span><br><span class="line">      <span class="keyword">while</span> (predecessor.right &amp;&amp; predecessor.right !== node) &#123;</span><br><span class="line">        predecessor = predecessor.right;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 2.1 如果 predecessor 的右子树为空</span></span><br><span class="line">      <span class="keyword">if</span> (!predecessor.right) &#123;</span><br><span class="line">        <span class="comment">// 将其右子树指向 n</span></span><br><span class="line">        predecessor.right = node;</span><br><span class="line">        <span class="comment">// 访问 n 的左子树</span></span><br><span class="line">        node = node.left;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 2.2 如果不为空，说明我们已经遍历完 node 的左子树</span></span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 将 predecessor 的右子树置空</span></span><br><span class="line">        predecessor.right = <span class="literal">null</span>;</span><br><span class="line">        <span class="comment">// 将 n 的值加入答案数组</span></span><br><span class="line">        nums.push(node.val);</span><br><span class="line">        <span class="comment">// 访问 n 的右子树</span></span><br><span class="line">        node = node.right;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> nums;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="复杂度-3"><a href="#复杂度-3" class="headerlink" title="复杂度"></a>复杂度</h3><ul>
+<li>时间：O(n)。其中  n 为二叉搜索树的节点个数。Morris 遍历中每个节点会被访问两次。</li>
+<li>空间：O(1)。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/31/yuque/Google%20%E5%B7%A5%E4%BD%9C%E6%B3%95/" rel="next" title="Google 工作法">
+      Google 工作法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%95%E4%B8%80%EF%BC%9A%E6%A0%88-%E6%A0%87%E8%AE%B0"><span class="nav-number">2.</span> <span class="nav-text">法一：栈 + 标记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">2.3.</span> <span class="nav-text">复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%95%E4%BA%8C%EF%BC%9A%E9%80%92%E5%BD%92"><span class="nav-number">3.</span> <span class="nav-text">法二：递归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="nav-number">3.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="nav-number">3.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6-1"><span class="nav-number">3.3.</span> <span class="nav-text">复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%95%E4%B8%89%EF%BC%9A%E6%A0%88"><span class="nav-number">4.</span> <span class="nav-text">法三：栈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="nav-number">4.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6-2"><span class="nav-number">4.2.</span> <span class="nav-text">复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%95%E5%9B%9B%EF%BC%9AMorries-%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="nav-number">5.</span> <span class="nav-text">法四：Morries 中序遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="nav-number">5.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="nav-number">5.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6-3"><span class="nav-number">5.3.</span> <span class="nav-text">复杂度</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Vanny"
+      src="/images/avatar_360.jpeg">
+  <p class="site-author-name" itemprop="name">Vanny</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/vannysi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;vannysi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i><span class="label">GitHub</span></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/diff399202@sina.cn" title="E-Mail → diff399202@sina.cn"><i class="fa fa-envelope fa-fw"></i><span class="label">E-Mail</span></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/2565903864" title="微博 → https:&#x2F;&#x2F;weibo.com&#x2F;2565903864" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i><span class="label">微博</span></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.yuque.com/ywc" title="语雀 → https:&#x2F;&#x2F;www.yuque.com&#x2F;ywc" rel="noopener" target="_blank"><i class="fa fa-link fa-fw"></i><span class="label">语雀</span></a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vanny</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
