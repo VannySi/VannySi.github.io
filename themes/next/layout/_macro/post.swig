@@ -96,6 +96,21 @@
             </span>
           {%- endif %}
 
+
+        {%- if post.tags and post.tags.length %}
+          {%- if theme.tag_icon %}
+            {%- set tag_indicate = '<i class="fa fa-tag"></i>' %}
+          {% else %}
+            {%- set tag_indicate = '#' %}
+          {%- endif %}
+          <span class="post-meta-item post-tags">
+            {%- for tag in post.tags.toArray() %}
+              {{ tag_indicate }}
+              <a href="{{ url_for(tag.path) }}" rel="tag">{{ tag.name }}</a>
+            {%- endfor %}
+          </span>
+        {%- endif %}
+
           {# LeanCloud PageView #}
           {%- if theme.leancloud_visitors.enable or (theme.valine.enable and theme.valine.appid and theme.valine.appkey and theme.valine.visitor) %}
             <span id="{{ url_for(post.path) }}" class="post-meta-item leancloud_visitors" data-flag-title="{{ post.title }}" title="{{ __('post.views') }}">
@@ -231,19 +246,6 @@
       {%- endif %}
 
       <footer class="post-footer">
-        {%- if post.tags and post.tags.length %}
-          {%- if theme.tag_icon %}
-            {%- set tag_indicate = '<i class="fa fa-tag"></i>' %}
-          {% else %}
-            {%- set tag_indicate = '#' %}
-          {%- endif %}
-          <div class="post-tags">
-            {%- for tag in post.tags.toArray() %}
-              <a href="{{ url_for(tag.path) }}" rel="tag">{{ tag_indicate }} {{ tag.name }}</a>
-            {%- endfor %}
-          </div>
-        {%- endif %}
-
         {{ partial('_partials/post/post-footer.swig', {}, {cache: theme.cache.enable}) }}
 
         {{ post_nav(post) }}

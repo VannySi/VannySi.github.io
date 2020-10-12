@@ -8,9 +8,6 @@ tags: jQuery
 excerpt: 书中实例思考
 ---
 
-- content
-  {:toc}
-
 详细笔记见[锋利的 jquery(第 2 版)](https://github.com/VannySi/vanny/blob/master/00NoteBook/05JQuery.md)
 
 ## 某网站品牌列表的效果
